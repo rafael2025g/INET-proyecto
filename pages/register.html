@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/register.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="register-container">
+    <form class="register-box">
+      <h2>Registrarse</h2>
+
+      <div class="input-container">
+        <label for="username">Nombre de usuario</label>
+        <div class="input-icon">
+          <i class="fas fa-user"></i>
+          <input type="text" id="username" placeholder="Tu nombre de usuario" required>
+        </div>
+      </div>
+
+      <div class="input-container">
+        <label for="email">Email</label>
+        <div class="input-icon">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="email" placeholder="ejemplo@correo.com" required>
+        </div>
+      </div>
+
+      <div class="input-container">
+        <label for="phone">Teléfono</label>
+        <div class="input-icon">
+          <i class="fas fa-phone"></i>
+          <input type="tel" id="phone" placeholder="+1 234 567 8900" required>
+        </div>
+      </div>
+
+      <div class="input-container">
+        <label for="password">Crea una contraseña</label>
+        <div class="input-icon">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password" placeholder="Contraseña segura" required>
+        </div>
+      </div>
+
+      <div class="input-container">
+        <label for="confirm-password">Confirmar contraseña</label>
+        <div class="input-icon">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="confirm-password" placeholder="Confirma tu contraseña" required>
+        </div>
+      </div>
+
+      <button type="submit" class="register-btn">Registrarse</button>
+
+      <p class="login-text">
+        ¿ya tienes una cuenta? <a href="#">Iniciar sesion</a>
+      </p>
+    </form>
+  </div>
+</body>
+</html>

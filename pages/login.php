@@ -55,12 +55,34 @@
 <body>
 
   <div class="login-container">
-    <h2>Iniciar sesión</h2>
-    <form action="" method="POST">
-      <input type="text" name="nombre de usuario" placeholder="nombre de usuario" required>
-      <input type="varchar" name="email" placeholder="email" required>
-      <input type="password" name="clave" placeholder="Contraseña" required>
-      <button type="submit" name="login">Entrar</button>
+    <form class="login-box">
+      <h2>Iniciar sesión</h2>
+
+      <div class="input-group">
+        <label for="email">Email *</label>
+        <input type="email" id="email" placeholder="tu@email.com" required>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Contraseña *</label>
+        <div class="password-wrapper">
+          <input type="password" id="password" required>
+          <span class="toggle-password"><i class="fas fa-eye"></i></span>
+        </div>
+      </div>
+
+      <div class="options">
+        <label><input type="checkbox"> Recordarme</label>
+        <a href="#">¿Olvidaste tu contraseña?</a>
+      </div>
+
+      <button type="submit" class="login-btn">
+        <i class="fas fa-arrow-right"></i> Entrar
+      </button>
+
+      <p class="register-text">
+        ¿No tienes una cuenta? <a href="#">Regístrate</a>
+      </p>
     </form>
   </div>
 

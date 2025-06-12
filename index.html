@@ -19,8 +19,8 @@
           <a href="#">Contacto</a>
         </nav>
         <div class="nav-buttons">
-          <button class="btn-outline">Iniciar sesión</button>
-          <button class="btn-filled">Registrarse</button>
+          <button class="btn-outline"><a href="/pages/login.php">Iniciar sesión</a></button>
+          <button class="btn-filled"><a href="/pages/register.html">Registrarse</a></button>
         </div>
       </div>
     </header>
@@ -424,17 +424,26 @@
         <h2>Envíanos un mensaje</h2>
         <form class="form-content" action="#" method="post">
           <div class="form-row">
-            <div class="input-group">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              <input type="text" name="nombre" placeholder="Nombre" required>
+            <div class="input-container">
+              <label for="">Nombre</label>
+              <div class="input-group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <input type="text" name="nombre" placeholder="Nombre" required>
+              </div>
             </div>
-            <div class="input-group">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
-              <input type="email" name="email" placeholder="Correo Electrónico" required>
+            <div class="input-container">
+              <label for="">Email</label>
+              <div class="input-group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+                <input type="email" name="email" placeholder="Correo Electrónico" required>
+              </div>
             </div>
-            <div class="input-group">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square-text-icon lucide-message-square-text"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M13 8H7"/><path d="M17 12H7"/></svg>
-              <textarea name="mensaje" rows="4" placeholder="Mensaje" required></textarea>
+            <div class="input-container">
+              <label for="">Mensaje</label>
+              <div class="input-group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square-text-icon lucide-message-square-text"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M13 8H7"/><path d="M17 12H7"/></svg>
+                <textarea name="mensaje" rows="8" placeholder="Mensaje" required></textarea>
+              </div>
             </div>
           </div>
           <button type="submit">Enviar</button>

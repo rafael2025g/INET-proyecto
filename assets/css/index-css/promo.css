@@ -1,0 +1,728 @@
+
+/* SECCIÓN PRINCIPAL DE PROMOCIONES*/
+.promo-section {
+  position: relative;
+  width: 100%;
+  padding-bottom: 4rem;
+  background: linear-gradient(135deg, #370a64 0%, #77008c 100%);
+  font-family: "Segoe UI", sans-serif;
+  overflow: hidden;
+}
+
+/* BANNER ANIMADO RESPONSIVE*/
+.promo-banner-outer {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(to right, #ff0000 0%, #ee00ff 100%);
+  overflow: hidden;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.promo-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  font-weight: 600;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: #fafafa;
+  height: 100%;
+  white-space: nowrap;
+}
+
+.promo-banner.animate-banner {
+  min-width: 100%;
+  animation: scrollBanner 20s linear infinite;
+}
+
+.promo-banner p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.promo-banner svg {
+  color: #eeff00;
+  flex-shrink: 0;
+}
+
+.span-subtitle {
+  margin-left: 0.5rem;
+  color: #f0f0f0;
+  font-weight: 500;
+}
+
+.span-pharafo {
+  color: #f3f3f3;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* CONTENEDOR PRINCIPAL RESPONSIVE*/
+.promo-container {
+  margin: 0 2rem;
+  position: relative;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.promo-contain {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* 
+========================================
+CONTENIDO DE ENCABEZADO
+========================================
+*/
+.promo-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.promo-ads {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 1.4rem;
+  background: #ff5500;
+  color: #fafafa;
+  border-radius: 24px;
+  transition: transform 0.3s ease;
+}
+
+.promo-ads:hover {
+  transform: translateY(-5px);
+  animation: pulse 2s infinite;
+}
+
+.promo-ads svg {
+  width: 28px;
+  height: 28px;
+}
+
+.promo-ads h3 {
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.promo-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.promo-title h2 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  color: #fafafa;
+  position: relative;
+}
+
+.promo-title h2 span::before {
+  content: "HASTA 50%";
+  background: linear-gradient(90deg, #e5ff00 0%, #ff5906 50%, #ff6600 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  font-weight: bold;
+  animation: pulse 3s infinite;
+}
+
+.promo-title p {
+  font-size: clamp(1rem, 2.5vw, 2rem);
+  color: #f3f3f3;
+}
+
+/* 
+========================================
+TARJETA PRINCIPAL RESPONSIVE
+========================================
+*/
+.promo-main {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #db3a1d 0%, #ff418a 100%);
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.promo-main::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: rotate(45deg);
+  transition: all 0.6s;
+  opacity: 0;
+}
+
+.promo-main:hover::before {
+  animation: shimmer 1.5s ease-in-out;
+}
+
+.promo-main:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(219, 58, 29, 0.4);
+}
+
+/* ITEM DE PROMOCIÓN */
+.promo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.promo-item .item {
+  display: flex;
+  align-items: center;
+  background: #fafafa;
+  padding: 0.5rem 1rem;
+  color: #ff0000;
+  border-radius: 24px;
+  transition: all 0.3s ease;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+}
+
+.promo-item .item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.promo-item .item svg {
+  margin-right: 0.5rem;
+  color: #ff9800;
+}
+
+.promo-duration {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: clamp(0.8rem, 2vw, 0.95rem);
+  color: #fafafa;
+}
+
+.countdown {
+  font-weight: bold;
+  color: #ffea06;
+  animation: pulse 2s infinite;
+}
+
+/* 
+========================================
+INFORMACIÓN DE PROMOCIÓN RESPONSIVE
+========================================
+*/
+.promo-info-title {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.promo-info h3 {
+  font-size: clamp(4rem, 8vw, 6rem);
+  color: #fafafa;
+  margin-bottom: 0.5rem;
+  transition: all 0.5s ease;
+}
+
+.promo-info-title span {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: #ffea06;
+}
+
+.promo-info p {
+  margin-bottom: 2rem;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  color: #f3f3f3;
+  line-height: 1.6;
+}
+
+/* BOTONES DE PROMOCIÓN RESPONSIVE */
+.promo-content-btn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.promo-info button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: bold;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  border: none;
+}
+
+.promo-info button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.promo-info button:hover::before {
+  left: 100%;
+}
+
+.btn-reservation {
+  color: #2277f6;
+  background-color: #fafafa;
+  border: 1px solid #fafafa;
+}
+
+.btn-more {
+  color: #fafafa;
+  background-color: #2277f6;
+  border: 1px solid #5b6af1;
+}
+
+.btn-reservation:hover {
+  transform: translateY(-3px);
+  background-color: #e0e0e0;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-more:hover {
+  transform: translateY(-3px);
+  background-color: #5b6af1;
+  box-shadow: 0 10px 20px rgba(91, 106, 241, 0.4);
+}
+
+/* 
+========================================
+PROMOCIONES LATERALES RESPONSIVE
+========================================
+*/
+.promo-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.promo-small {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid #163666;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.promo-small:first-child {
+  background: linear-gradient(135deg, #2277f6, #1565c0);
+}
+
+.promo-small:last-child {
+  background: linear-gradient(135deg, #ff418a, #e91e63);
+}
+
+.promo-small::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  transform: scale(0);
+  transition: transform 0.6s ease;
+}
+
+.promo-small:hover::before {
+  transform: scale(1);
+}
+
+.promo-small:hover {
+  transform: translateY(-10px) scale(1.05);
+}
+
+.promo-small:first-child:hover {
+  box-shadow: 0 15px 30px rgba(34, 119, 246, 0.4);
+}
+
+.promo-small:last-child:hover {
+  box-shadow: 0 15px 30px rgba(255, 65, 138, 0.4);
+}
+
+/* ITEM PEQUEÑO DE PROMOCIÓN */
+.promo-small-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.promo-small-item svg {
+  width: clamp(2rem, 4vw, 2.6rem);
+  height: clamp(2rem, 4vw, 2.6rem);
+  transition: transform 0.3s ease;
+}
+
+.promo-small:hover .promo-small-item svg {
+  transform: rotate(360deg);
+}
+
+.small-item-icon-uno svg {
+  color: #ffea06;
+}
+
+.small-item-icon-dos svg {
+  color: #ffffff;
+}
+
+.small-item-type-uno,
+.small-item-type-dos {
+  padding: 0.5rem 1rem;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  font-weight: 500;
+  border: 1px solid #ffffff;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.small-item-type-uno {
+  color: #2277f6;
+  background-color: #ffea06;
+}
+
+.small-item-type-dos {
+  color: #ff418a;
+  background-color: #ffffff;
+}
+
+/* INFORMACIÓN LATERAL */
+.promo-side h4 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #fafafa;
+  margin-bottom: 0.5rem;
+}
+
+.promo-side .promo-info-title span {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 700;
+  color: #ffea06;
+}
+
+.promo-side-description {
+  font-size: clamp(0.8rem, 2vw, 0.95rem);
+  color: #f3f3f3;
+  margin-bottom: 1rem;
+}
+
+.promo-small button {
+  width: 100%;
+  padding: 1rem 0.8rem;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  font-weight: bold;
+  color: #fafafa;
+  background-color: #039be5;
+  border: 1px solid #0277bd;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.promo-small button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.promo-small button:hover::before {
+  left: 100%;
+}
+
+.promo-small button:hover {
+  background-color: #0277bd;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(3, 155, 229, 0.4);
+}
+
+/* CLASES DE ANIMACIÓN SCROLL*/
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-animate.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-animate[data-animation="fadeInUp"].animate {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.scroll-animate[data-animation="fadeIn"].animate {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.scroll-animate[data-animation="slideInLeft"].animate {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.scroll-animate[data-animation="slideInRight"].animate {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+.scroll-animate[data-animation="slideInUp"].animate {
+  animation: slideInUp 0.8s ease-out forwards;
+}
+
+.scroll-animate[data-animation="bounceIn"].animate {
+  animation: bounceIn 0.8s ease-out forwards;
+}
+
+/* ANIMACIONES BASE PARA PROMOCIONES */
+
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes scrollBanner {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* RESPONSIVE DESIGN PARA PROMOCIONES*/
+
+/* TABLETS */
+@media (max-width: 1024px) {
+  .promo-container {
+    margin: 0 1.5rem;
+  }
+
+  .promo-contain {
+    gap: 1.5rem;
+  }
+}
+
+/* MÓVILES GRANDES */
+@media (max-width: 768px) {
+  .promo-container {
+    margin: 0 1rem;
+  }
+
+  .promo-contain {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .promo-content {
+    padding: 1rem;
+  }
+
+  .promo-content-btn {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .promo-info button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .promo-side {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .promo-banner p {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .span-subtitle,
+  .span-pharafo {
+    margin-left: 0;
+  }
+}
+
+/* MÓVILES PEQUEÑOS */
+@media (max-width: 480px) {
+  .promo-banner {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .promo-container {
+    margin: 0 0.5rem;
+  }
+
+  .promo-main,
+  .promo-small {
+    padding: 1rem;
+  }
+
+  .promo-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .promo-small-item {
+    justify-content: center;
+  }
+}
+
+/* ACCESIBILIDAD */
+@media (prefers-reduced-motion: reduce) {
+  .promo-banner.animate-banner {
+    animation: none;
+  }
+
+  .promo-ads:hover {
+    animation: none;
+  }
+
+  .countdown {
+    animation: none;
+  }
+}

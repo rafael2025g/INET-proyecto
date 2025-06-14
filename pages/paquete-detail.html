@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/css/paquetes/paquetes-detail.css" />
+    <title>Cancún Todo Incluido - TravelWorld</title>
+  </head>
+  <body>
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Cargando detalles del paquete...</p>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 1: NAVEGACIÓN PRINCIPAL-->
+    <header>
+      <nav class="navbar">
+        <!-- LOGO DE LA EMPRESA -->
+        <div class="logo">TravelWorld</div>
+        
+        <!-- BOTÓN HAMBURGUESA PARA MÓVIL (NUEVO) -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menú">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        
+        <!-- MENÚ DE NAVEGACIÓN CON OVERLAY MÓVIL -->
+        <div class="nav-menu" id="navMenu">
+          <!--  OVERLAY PARA MÓVIL (NUEVO) -->
+          <div class="nav-overlay" id="navOverlay"></div>
+          
+          <!-- CONTENEDOR DEL MENÚ -->
+          <div class="nav-content">
+            <!-- HEADER DEL MENÚ MÓVIL (NUEVO) -->
+            <div class="mobile-menu-header">
+              <div class="logo">TravelWorld</div>
+              <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+            
+            <!-- ENLACES DE NAVEGACIÓN -->
+            <ul class="nav-links">
+              <li><a href="#" class="nav-link">inicio</a></li>
+              <li><a href="#" class="nav-link">ofertas</a></li>
+              <li><a href="#" class="nav-link active">paquetes</a></li>
+              <li><a href="#" class="nav-link">servicios</a></li>
+              <li><a href="#" class="nav-link">contacto</a></li>
+            </ul>
+            
+            <!-- BOTONES DE ACCIÓN -->
+            <div class="nav-buttons">
+              <button class="btn-outline">
+                <a href="/pages/login.php">Iniciar sesión</a>
+              </button>
+              <button class="btn-filled">
+                <a href="/pages/register.html">Registrarse</a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <section class="package-detail" id="packageDetail">
+      <div class="package-header">
+        <span class="discount">50% OFF</span>
+
+        <div class="slider-container">
+          <div class="slider" id="imageSlider">
+            <button class="slider-arrow prev-arrow" id="prevBtn">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="15,18 9,12 15,6"></polyline>
+              </svg>
+            </button>
+
+            <div class="slider-track" id="sliderTrack">
+              <img
+                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=400&fit=crop"
+                alt="Vista panorámica de Cancún"
+                class="slider-image active"
+                data-index="0"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=400&fit=crop"
+                alt="Playa paradisíaca"
+                class="slider-image"
+                data-index="1"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=400&fit=crop"
+                alt="Resort de lujo"
+                class="slider-image"
+                data-index="2"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=800&h=400&fit=crop"
+                alt="Piscina del resort"
+                class="slider-image"
+                data-index="3"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&h=400&fit=crop"
+                alt="Atardecer en la playa"
+                class="slider-image"
+                data-index="4"
+              />
+            </div>
+
+            <button class="slider-arrow next-arrow" id="nextBtn">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="9,18 15,12 9,6"></polyline>
+              </svg>
+            </button>
+
+            <div class="slider-indicator" id="sliderIndicator">
+              <span id="currentSlide">1</span>/<span id="totalSlides">5</span>
+            </div>
+          </div>
+
+          <div class="thumbnails" id="thumbnails">
+            <div class="thumb active" data-index="0">
+              <img
+                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=100&h=60&fit=crop"
+                alt="Thumbnail 1"
+              />
+            </div>
+            <div class="thumb" data-index="1">
+              <img
+                src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=100&h=60&fit=crop"
+                alt="Thumbnail 2"
+              />
+            </div>
+            <div class="thumb" data-index="2">
+              <img
+                src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=100&h=60&fit=crop"
+                alt="Thumbnail 3"
+              />
+            </div>
+            <div class="thumb" data-index="3">
+              <img
+                src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=100&h=60&fit=crop"
+                alt="Thumbnail 4"
+              />
+            </div>
+            <div class="thumb" data-index="4">
+              <img
+                src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=100&h=60&fit=crop"
+                alt="Thumbnail 5"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="package-body">
+        <div class="package-title">
+          <h2>Cancún Todo Incluido</h2>
+          <button class="btn-agregar" id="addToCartBtn">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path
+                d="m1 1 4 4 2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+              ></path>
+            </svg>
+            Agregar al Carrito
+          </button>
+        </div>
+        <div class="package-top">
+          <div class="description-section">
+            <div class="description-title">
+              <h3>Descripción del Viaje</h3>
+              <div class="price-box">
+                <strong>$12,200</strong>
+                <span class="original-price">$24,200</span>
+              </div>
+            </div>
+            <p>
+              Disfruta de las playas paradisíacas de Cancún con este paquete
+              todo incluido de 7 días en un resort 5 estrellas. Incluye vuelos,
+              traslados, alojamiento, todas las comidas y bebidas, además de
+              acceso a actividades acuáticas y entretenimiento nocturno.
+            </p>
+          </div>
+        </div>
+
+        <div class="package-icons">
+          <div class="icon-box">
+            <div class="icon one">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                style="color: #4180f3;"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12,6 12,12 16,14"></polyline>
+              </svg>
+            </div>
+            <div>
+              <strong>7 días</strong><br />
+              <span>Duración</span>
+            </div>
+          </div>
+          <div class="icon-box">
+            <div class="icon two">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                style="color: #41f37c;"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
+                ></path>
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+              </svg>
+            </div>
+            <div>
+              <strong>Familiar</strong><br />
+              <span>Tipo de viaje</span>
+            </div>
+          </div>
+          <div class="icon-box">
+            <div class="icon three">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                style="color: #de41f3;"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M2 12h20"></path>
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <strong>Internacional</strong><br />
+              <span>Destino</span>
+            </div>
+          </div>
+          <div class="icon-box">
+            <div class="icon four">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                style="color: #f3a641;"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M5 12V7a1 1 0 0 1 1-1h4l2-3h4l2 3h4a1 1 0 0 1 1 1v5"
+                ></path>
+                <path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"></path>
+                <path d="M12 8v4"></path>
+                <path d="M8 12h8"></path>
+              </svg>
+            </div>
+            <div>
+              <strong>Todo incluido</strong><br />
+              <span>Modalidad</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h3>TravelWorld</h3>
+          <p>
+            Empresa líder en venta de paquetes turísticos nacionales e
+            internacionales.
+          </p>
+        </div>
+        <div class="footer-links">
+          <h4>Enlaces</h4>
+          <a href="#">Inicio</a>
+          <a href="#">Ofertas</a>
+          <a href="#">Paquetes</a>
+          <a href="#">Servicios</a>
+          <a href="#">Contacto</a>
+        </div>
+        <div class="footer-contact">
+          <h4>Contacto</h4>
+          <ul class="contact-content">
+            <li class="contact-item">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
+                />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Av. Principal 123, Ciudad
+            </li>
+            <li class="contact-item">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"
+                />
+              </svg>
+              +54 9 11 1234 5678
+            </li>
+            <li class="contact-item">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+              </svg>
+              info@travelworld.com
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-detail">
+        <p>&copy; 2025 TravelWorld. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <script src="../assets/js/slider.js"></script>
+  </body>
+</html>

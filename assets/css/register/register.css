@@ -1,0 +1,114 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #007bff, #4facfe);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-container {
+  max-width: 90%;
+  width: 420px;
+  min-height: 600px;
+  background: #fff;
+  padding: 0.5rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.register-form h2 {
+  margin-bottom: 1.5rem;
+  font-size: 2.2rem;
+  color: #2372ff;
+  text-align: center;
+}
+
+.input-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.input-field {
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.input-field label {
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+  display: block;
+  color: #333;
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 0.75rem;
+  border: 1.5px solid #2372ff;
+  border-radius: 6px;
+}
+
+.input-box i {
+  color: #2372ff;
+  margin-right: 0.5rem;
+}
+
+.input-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+.checkbox-field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  margin: 1rem 0;
+}
+
+.checkbox-field a {
+  color: #2372ff;
+  text-decoration: none;
+}
+
+.checkbox-field a:hover {
+  text-decoration: underline;
+}
+
+.register-btn {
+  width: 100%;
+  background: linear-gradient(to right, #2372ff, #0047ff);
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.register-btn:hover {
+  background: linear-gradient(to right, #1a5fe7, #0039cc);
+}
+
+.login-link {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.login-link a {
+  color: #2372ff;
+  text-decoration: none;
+}

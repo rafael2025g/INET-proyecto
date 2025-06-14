@@ -1,41 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/login.css">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iniciar sesión</title>
+  <link rel="stylesheet" href="../assets/css/login.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body>
-    <div class="login-container">
-    <form class="login-box">
+  <div class="login-container">
+    <form class="login-form">
       <h2>Iniciar sesión</h2>
-      <div class="input-container">
+
+      <div class="input-field">
         <label for="email">Email</label>
-        <div class="input-group">
-            <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
-            <input type="email" id="email" placeholder="email" required>
+        <div class="input-box">
+          <i class="fa fa-envelope"></i>
+          <input type="email" id="email" placeholder="Email" required />
         </div>
       </div>
-      <div class="input-container">
+
+      <div class="input-field">
         <label for="password">Contraseña</label>
-        <div class="input-group">
-          <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="16" r="1"/><rect x="3" y="10" width="18" height="12" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></svg>
-          <input type="password" id="password" placeholder="contraseña" required>
+        <div class="input-box">
+          <i class="fa fa-lock"></i>
+          <input type="password" id="password" placeholder="Contraseña" required />
         </div>
       </div>
-      <div class="options">
-        <label><input type="checkbox"> Recordarme</label>
-        <a href="../pages/register.html">¿Olvidaste tu contraseña?</a>
+
+      <div class="options-row">
+        <label class="remember-me">
+          <input type="checkbox" />
+          Recordarme
+        </label>
+        <a href="#" class="forgot">¿Olvidaste tu contraseña?</a>
       </div>
 
-      <button type="submit" class="login-btn">
-        <i class="fas fa-arrow-right"></i> Entrar
-      </button>
+      <button type="submit" class="login-btn">Iniciar sesión</button>
 
-      <p class="register-text">
-        ¿No tienes una cuenta? <a href="./register.html">Regístrate</a>
-      </p>
+      <p class="register-link">¿No tienes una cuenta? <a href="/pages/register.html">Regístrate</a></p>
     </form>
   </div>
 </body>

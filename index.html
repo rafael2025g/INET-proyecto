@@ -4,355 +4,440 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TravelWorld - Paquetes Turísticos</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/index-css/index.css" />
+  <link rel="stylesheet" href="assets/css/index-css/promo.css">
+  <link rel="stylesheet" href="assets/css/index-css/contact.css">
 </head>
 <body>
-    <!-- NAVBAR -->
-    <header class="navbar">
-      <div class="navbar-content">
+    <!-- SECCIÓN 1: NAVEGACIÓN PRINCIPAL-->
+    <header>
+      <nav class="navbar">
+        <!-- LOGO DE LA EMPRESA -->
         <div class="logo">TravelWorld</div>
-        <nav class="nav-links">
-          <a href="#">Inicio</a>
-          <a href="#">Ofertas</a>
-          <a href="#">Paquetes</a>
-          <a href="#">Servicios</a>
-          <a href="#">Contacto</a>
-        </nav>
-        <div class="nav-buttons">
-          <button class="btn-outline"><a href="/pages/login.php">Iniciar sesión</a></button>
-          <button class="btn-filled"><a href="/pages/register.html">Registrarse</a></button>
+        
+        <!-- BOTÓN HAMBURGUESA PARA MÓVIL (NUEVO) -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menú">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        
+        <!-- MENÚ DE NAVEGACIÓN CON OVERLAY MÓVIL -->
+        <div class="nav-menu" id="navMenu">
+          <!--  OVERLAY PARA MÓVIL (NUEVO) -->
+          <div class="nav-overlay" id="navOverlay"></div>
+          
+          <!-- CONTENEDOR DEL MENÚ -->
+          <div class="nav-content">
+            <!-- HEADER DEL MENÚ MÓVIL (NUEVO) -->
+            <div class="mobile-menu-header">
+              <div class="logo">TravelWorld</div>
+              <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+            
+            <!-- ENLACES DE NAVEGACIÓN -->
+            <ul class="nav-links">
+              <li><a href="/index.html" class="nav-link active">inicio</a></li>
+              <li><a href="/index.html#promoSection" class="nav-link">ofertas</a></li>
+              <li><a href="/pages/paquetes.html" class="nav-link">paquetes</a></li>
+              <li><a href="/index.html#servicios" class="nav-link">servicios</a></li>
+              <li><a href="/index.html#contacto" class="nav-link">contacto</a></li>
+            </ul>
+            
+            <!-- BOTONES DE ACCIÓN -->
+            <div class="nav-buttons">
+              <button class="btn-outline">
+                <a href="/pages/login.php">Iniciar sesión</a>
+              </button>
+              <button class="btn-filled">
+                <a href="/pages/register.html">Registrarse</a>
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      </nav>
     </header>
 
+    <!-- SECCIÓN 2: HERO/BANNER PRINCIPAL-->
     <section class="hero">
+      <!-- OVERLAY PARA MEJORAR LEGIBILIDAD DEL TEXTO -->
       <div class="hero-overlay">
         <div class="hero-text">
-          <h1>Descubre el Mundo con Nosotros</h1>
-          <p>
+          <!-- TÍTULO PRINCIPAL CON ANIMACIÓN -->
+          <h1 class="animate-on-scroll">Descubre el Mundo con Nosotros</h1>
+          
+          <!-- SUBTÍTULO DESCRIPTIVO -->
+          <p class="animate-on-scroll" style="--delay: 0.2s;">
             Tu agencia de confianza con más de 10 años creando experiencias
             únicas por todo el mundo.
           </p>
-          <div class="hero-stats">
-            <div class="stat">
-              <span class="number">500+</span><br /><span class="label"
-                >Destinos</span
-              >
+          
+          <!-- ESTADÍSTICAS DE LA EMPRESA -->
+          <div class="hero-stats animate-on-scroll" style="--delay: 0.4s;">
+            <div class="stats">
+              <!-- CONTADOR ANIMADO: Destinos disponibles -->
+              <div class="stat-item">
+                <span class="count" data-target="500">0</span><span> +</span></span>
+                <p>Destinos</p>
+              </div>
+
+              <!-- CONTADOR ANIMADO: Clientes satisfechos -->
+              <div class="stat-item">
+                <span class="count" data-target="10000">0</span><span>+</span></span>
+                <p>Clientes Felices</p>
+              </div>
+
+              <!-- CONTADOR ANIMADO: Años de experiencia -->
+              <div class="stat-item">
+                <span class="count" data-target="4">0</span><span>+</span></span>
+                <p>Años de Experiencia</p>
+              </div>
             </div>
-            <div class="stat">
-              <span class="number">10.000+</span><br /><span class="label"
-                >Clientes Felices</span
-              >
-            </div>
-            <div class="stat">
-              <span class="number">4+</span><br /><span class="label"
-                >Años de Experiencia</span
-              >
-            </div>
-          </div>
-          <button class="hero-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plane-icon lucide-plane"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>Explorar Ahora</button>
+          
+          <!-- BOTÓN PRINCIPAL DE ACCIÓN -->
+          <button class="hero-button animate-on-scroll" style="--delay: 0.6s;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plane-icon lucide-plane">
+              <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+            </svg>
+            Explorar Ahora
+          </button>
         </div>
       </div>
     </section>
 
-    <section class="promo-section">
-      <div class="promo-banner">
-        <p>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="lucide lucide-zap-icon lucide-zap"
-          >
-            <path
-              d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"
-            />
-          </svg>
-          ¡SÚPER OFERTA!
-          <span class="span-subtitle">
-            Hasta 50% OFF en destinos seleccionados
-          </span>
-          <span class="span-pharafo">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-clock-icon lucide-clock"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <polyline points="12 6 12 12 16 14" />
-            </svg>
-            Solo hasta fin de mes
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-sparkles-icon lucide-sparkles"
-            >
-              <path
-                d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"
-              />
-              <path d="M20 3v4" />
-              <path d="M22 5h-4" />
-              <path d="M4 17v2" />
-              <path d="M5 18H3" />
-            </svg>
-          </span>
-        </p>
-      </div>
-
-      <div class="promo-container">
-        <div class="promo-content">
-          <div class="promo-ads">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-sparkles-icon lucide-sparkles"
-            >
-              <path
-                d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"
-              />
-              <path d="M20 3v4" />
-              <path d="M22 5h-4" />
-              <path d="M4 17v2" />
-              <path d="M5 18H3" />
-            </svg>
-            <h3>OFERTAS LIMITADAS</h3>
-          </div>
-
-          <div class="promo-title">
-            <h2>¡AHORRA <span></span></h2>
-            <p>
-              Ofertas exclusivas que no puedes dejar pasar. ¡Solo por tiempo
-              limitado!
-            </p>
-          </div>
-        </div>
-
-        <div class="promo-contain">
-          <div class="promo-main">
-            <div class="promo-item">
-              <span class="item">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-zap-icon lucide-zap"
-                >
-                  <path
-                    d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"
-                  />
-                </svg>
-                OFERTA FLASH
-              </span>
-              <span class="promo-duration">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-clock-icon lucide-clock"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <polyline points="12 6 12 12 16 14" />
-                </svg>
-                Termina en 3 días
-              </span>
-            </div>
-
-            <div class="promo-info">
-              <h3>50% OFF</h3>
-              <p class="promo-description">
-                En todos los paquetes a Europa Incluye vuelos, hoteles 4-5 estrellas, desayunos y tours guiados. ¡La oportunidad perfecta para conocer Europa!
-              </p>
-              <div class="promo-content-btn">
-                <button class="btn-reservation"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plane-icon lucide-plane"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>Ver ofertas a Europa</button>
-                <button class="btn-more">Más detalles</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="promo-side">
-            <div class="promo-small">
-              <div class="promo-small-item">
-                <span class="small-item-icon-uno"><svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-crown-icon lucide-crown"><path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"/><path d="M5 21h14"/></svg></span>
-                <span class="small-item-type-uno">FAMILIAS</span>
-              </div>
-              <div class="promo-info">
-                <h4>30% OFF</h4>
-                <p class="promo-side-description">
-                  Paquetes familiares 4+ personas
+    <!-- SECCIÓN 3: PROMOCIONES ESPECIALES-->
+    <section class="promo-section" id="promoSection">
+        <!-- BANNER ANIMADO SUPERIOR -->
+        <div class="promo-banner-outer">
+            <div class="promo-banner animate-banner">
+                <p>
+                    <!-- ICONO DE RAYO PARA URGENCIA -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>
+                    </svg>
+                    ¡SÚPER OFERTA!
+                    <span class="span-subtitle">Hasta 50% OFF en destinos seleccionados</span>
+                    <span class="span-pharafo">
+                        <!-- ICONO DE RELOJ PARA TIEMPO LIMITADO -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        Solo hasta fin de mes
+                        <!-- ICONO DE ESTRELLA PARA DESTACAR -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+                            <path d="M20 3v4"/>
+                            <path d="M22 5h-4"/>
+                            <path d="M4 17v2"/>
+                            <path d="M5 18H3"/>
+                        </svg>
+                    </span>
                 </p>
-                <button>Ver ofertas</button>
-              </div>
+            </div>
+        </div>
+
+        <!-- CONTENEDOR PRINCIPAL DE PROMOCIONES -->
+        <div class="promo-container">
+            <!-- ENCABEZADO DE PROMOCIONES -->
+            <div class="promo-content scroll-animate" data-animation="fadeInUp" data-delay="0">
+                <div class="promo-ads scroll-animate" data-animation="bounceIn" data-delay="200">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+                        <path d="M20 3v4"/>
+                        <path d="M22 5h-4"/>
+                        <path d="M4 17v2"/>
+                        <path d="M5 18H3"/>
+                    </svg>
+                    <h3>OFERTAS LIMITADAS</h3>
+                </div>
+
+                <div class="promo-title scroll-animate" data-animation="slideInLeft" data-delay="400">
+                    <h2>¡AHORRA <span></span></h2>
+                    <p>Ofertas exclusivas que no puedes dejar pasar. ¡Solo por tiempo limitado!</p>
+                </div>
             </div>
 
-            <div class="promo-small">
-              <div class="promo-small-item">
-                <span class="small-item-icon-dos">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-heart-icon lucide-heart"
-                  >
-                    <path
-                      d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
-                    />
-                  </svg>
-                </span>
-                <span class="small-item-type-dos">ROMANCE</span>
-              </div>
-              <div class="promo-info">
-                <h4>25% OFF</h4>
-                <p class="promo-side-description">Paquetes luna de miel</p>
-                <button>Ver ofertas</button>
-              </div>
+            <!-- GRID DE PROMOCIONES -->
+            <div class="promo-contain">
+                <!-- PROMOCIÓN PRINCIPAL (EUROPA) -->
+                <div class="promo-main scroll-animate" data-animation="slideInUp" data-delay="600">
+                    <!-- INFORMACIÓN DE LA OFERTA FLASH -->
+                    <div class="promo-item scroll-animate" data-animation="fadeIn" data-delay="800">
+                        <span class="item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>
+                            </svg>
+                            OFERTA FLASH
+                        </span>
+                        <!-- COUNTDOWN DINÁMICO -->
+                        <span class="promo-duration">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            Termina en <span class="countdown" id="countdown">3 días</span>
+                        </span>
+                    </div>
+
+                    <!-- DETALLES DE LA PROMOCIÓN -->
+                    <div class="promo-info scroll-animate" data-animation="fadeInUp" data-delay="1000">
+                        <!-- PORCENTAJE DE DESCUENTO ANIMADO -->
+                        <div class="promo-info-title">
+                            <h3 class="animated-number" data-target="50">0</h3>
+                            <span>% Off </span>
+                        </div>
+                        <p class="promo-description">
+                            En todos los paquetes a Europa. Incluye vuelos, hoteles 4-5 estrellas, desayunos y tours guiados. ¡La oportunidad perfecta para conocer Europa!
+                        </p>
+                        <!-- BOTONES DE ACCIÓN -->
+                        <div class="promo-content-btn scroll-animate" data-animation="slideInUp" data-delay="1200">
+                            <button class="btn-reservation">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+                                </svg>
+                                Ver ofertas a Europa
+                            </button>
+                            <button class="btn-more">Más detalles</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROMOCIONES SECUNDARIAS -->
+                <div class="promo-side">
+                    <!-- OFERTA PARA FAMILIAS -->
+                    <div class="promo-small scroll-animate" data-animation="slideInRight" data-delay="800">
+                        <div class="promo-small-item">
+                            <span class="small-item-icon-uno">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"/>
+                                    <path d="M5 21h14"/>
+                                </svg>
+                            </span>
+                            <span class="small-item-type-uno">FAMILIAS</span>
+                        </div>
+                        <div class="promo-info">
+                            <!-- DESCUENTO ANIMADO PARA FAMILIAS -->
+                            <div class="promo-info-title">
+                                <h4 class="animated-number" data-target="30">0</h4>
+                                <span>% Off</span>
+                            </div>
+                            <p class="promo-side-description">Paquetes familiares 4+ personas</p>
+                            <button>Ver ofertas</button>
+                        </div>
+                    </div>
+
+                    <!-- OFERTA PARA PAREJAS/LUNA DE MIEL -->
+                    <div class="promo-small scroll-animate" data-animation="slideInRight" data-delay="1000">
+                        <div class="promo-small-item">
+                            <span class="small-item-icon-dos">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                                </svg>
+                            </span>
+                            <span class="small-item-type-dos">ROMANCE</span>
+                        </div>
+                        <div class="promo-info">
+                            <!-- DESCUENTO ANIMADO PARA PAREJAS -->
+                            <div class="promo-info-title">
+                                <h4 class="animated-number" data-target="25">0</h4>
+                                <span>% Off</span>
+                            </div>
+                            <p class="promo-side-description">Paquetes luna de miel</p>
+                            <button>Ver ofertas</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </section>
 
-    <!-- SERVICIOS -->
-    <section class="services-section">
-      <div class="services-header">
+    <!-- SECCIÓN 4: SERVICIOS OFRECIDOS-->
+    <section class="services-section" id="servicios">
+      <!-- ENCABEZADO DE SERVICIOS -->
+      <div class="services-header scroll-animate" data-animation="fadeInUp" data-delay="0">
         <h2>Nuestros <span>Servicios</span></h2>
-        <p>Conocé lo que ofrecemos para potenciar tu experiencia.</p>
+        <p class="scroll-animate" data-animation="fadeInUp" data-delay="200">Conocé lo que ofrecemos para potenciar tu experiencia.</p>
       </div>
 
       <div class="services-grid">
-        <div class="service-card">
-          <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path> </svg>
+        <!-- SERVICIO 1: VUELOS -->
+        <div class="service-card scroll-animate" data-animation="slideInLeft" data-delay="400">
+          <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
+          </svg>
           <h3>Vuelos</h3>
           <p>Las mejores tarifas aéreas nacionales e internacionales</p>
         </div>
-        <div class="service-card">
-          <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M10 22v-6.57"/><path d="M12 11h.01"/><path d="M12 7h.01"/><path d="M14 15.43V22"/><path d="M15 16a5 5 0 0 0-6 0"/><path d="M16 11h.01"/><path d="M16 7h.01"/><path d="M8 11h.01"/><path d="M8 7h.01"/><rect x="4" y="2" width="16" height="20" rx="2"/></svg>
+
+        <!-- SERVICIO 2: HOTELES -->
+        <div class="service-card scroll-animate" data-animation="slideInRight" data-delay="600">
+          <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 22v-6.57"/>
+            <path d="M12 11h.01"/>
+            <path d="M12 7h.01"/>
+            <path d="M14 15.43V22"/>
+            <path d="M15 16a5 5 0 0 0-6 0"/>
+            <path d="M16 11h.01"/>
+            <path d="M16 7h.01"/>
+            <path d="M8 11h.01"/>
+            <path d="M8 7h.01"/>
+            <rect x="4" y="2" width="16" height="20" rx="2"/>
+          </svg>
           <h3>Hoteles</h3>
           <p>Alojamientos de calidad en los mejores destinos</p>
         </div>
-        <div class="service-card">
-          <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8"/><path d="M7 14h.01"/><path d="M17 14h.01"/><rect width="18" height="8" x="3" y="10" rx="2"/><path d="M5 18v2"/><path d="M19 18v2"/></svg>
+
+        <!-- SERVICIO 3: ALQUILER DE AUTOS -->
+        <div class="service-card scroll-animate" data-animation="slideInLeft" data-delay="800">
+          <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8"/>
+            <path d="M7 14h.01"/>
+            <path d="M17 14h.01"/>
+            <rect width="18" height="8" x="3" y="10" rx="2"/>
+            <path d="M5 18v2"/>
+            <path d="M19 18v2"/>
+          </svg>
           <h3>Alquiler de Autos</h3>
           <p>Vehículos para tu comodidad y libertad de movimiento</p>
         </div>
-        <div class="service-card">
-          <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/> </svg>
+
+        <!-- SERVICIO 4: PAQUETES COMPLETOS -->
+        <div class="service-card scroll-animate" data-animation="slideInRight" data-delay="1000">
+          <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+            <rect width="20" height="14" x="2" y="6" rx="2"/>
+          </svg>
           <h3>Paquetes Completos</h3>
           <p>Todo incluido para que solo te preocupes por disfrutar</p>
         </div>
       </div>
-      <div class="services-button-wrapper">
-        <a href="#servicios" class="services-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rocket-icon lucide-rocket"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>Comenzar ahora</a>
+
+      <!-- BOTÓN PRINCIPAL DE SERVICIOS -->
+      <div class="services-button-wrapper scroll-animate" data-animation="fadeInUp" data-delay="1200">
+        <a href="#servicios" class="services-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+            <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+          </svg>
+          Comenzar ahora
+        </a>
       </div>
     </section>
 
-
+    <!-- SECCIÓN 5: ¿POR QUÉ ELEGIRNOS?-->
     <section class="why-choose-section">
-      <div class="why-choose-header">
+      <!-- ENCABEZADO DE BENEFICIOS -->
+      <div class="why-choose-header scroll-animate" data-animation="fadeInUp" data-delay="0">
         <h2>¿Por qué elegir <span>TravelWorld</span>?</h2>
-        <p>Estas son las razones por las que nuestros clientes nos eligen una y otra vez.</p>
+        <p class="scroll-animate" data-animation="fadeInUp" data-delay="200">Estas son las razones por las que nuestros clientes nos eligen una y otra vez.</p>
       </div>
 
       <div class="reasons-grid">
-        <div class="reason-card">
-          <div class="reason-container-icon"><svg class="reason-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><line x1="19" x2="5" y1="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div>
+        <!-- BENEFICIO 1: OFERTAS EXCLUSIVAS -->
+        <div class="reason-card scroll-animate" data-animation="slideInUp" data-delay="400">
+          <div class="reason-container-icon">
+            <svg class="reason-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" x2="5" y1="5" y2="19"/>
+              <circle cx="6.5" cy="6.5" r="2.5"/>
+              <circle cx="17.5" cy="17.5" r="2.5"/>
+            </svg>
+          </div>
           <h3>Ofertas Exclusivas</h3>
           <p>Descuentos de hasta 50% solo para miembros registrados</p>
           <div class="reason-promo">Hasta 50% OFF</div>
         </div>
 
-        <div class="reason-card">
-          <div class="reason-container-icon"><svg class="reason-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg></div>
+        <!-- BENEFICIO 2: ALERTAS TEMPRANAS -->
+        <div class="reason-card scroll-animate" data-animation="slideInUp" data-delay="600">
+          <div class="reason-container-icon">
+            <svg class="reason-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10.268 21a2 2 0 0 0 3.464 0"/>
+              <path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/>
+            </svg>
+          </div>
           <h3>Alertas Tempranas</h3>
           <p>Sé el primero en conocer nuestras promociones especiales</p>
           <div class="reason-promo">Acceso VIP</div>
         </div>
 
-        <div class="reason-card">
-          <div class="reason-container-icon"><svg class="reason-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/> </svg></div>
+        <!-- BENEFICIO 3: LISTA DE FAVORITOS -->
+        <div class="reason-card scroll-animate" data-animation="slideInUp" data-delay="800">
+          <div class="reason-container-icon">
+            <svg class="reason-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+            </svg>
+          </div>
           <h3>Lista de Favoritos</h3>
           <p>Guarda y organiza tus destinos soñados.</p>
           <div class="reason-promo">Personalizado</div>
         </div>
 
-        <div class="reason-card">
-          <div class="reason-container-icon"><svg class="reason-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/> </svg></div>
+        <!-- BENEFICIO 4: GESTIÓN FÁCIL -->
+        <div class="reason-card scroll-animate" data-animation="slideInUp" data-delay="1000">
+          <div class="reason-container-icon">
+            <svg class="reason-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 2v4"/>
+              <path d="M16 2v4"/>
+              <rect width="18" height="18" x="3" y="4" rx="2"/>
+              <path d="M3 10h18"/>
+              <path d="m9 16 2 2 4-4"/>
+            </svg>
+          </div>
           <h3>Gestión Fácil</h3>
           <p>Administra todas tus reservas desde un solo lugar</p>
           <div class="reason-promo">Todo en uno</div>
         </div>
-        <div class="reason-card">
-          <div class="reason-container-icon"><svg class="reason-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"/><path d="M21 16v2a4 4 0 0 1-4 4h-5"/> </svg></div>
+
+        <!-- BENEFICIO 5: SOPORTE 24/7 -->
+        <div class="reason-card scroll-animate" data-animation="slideInUp" data-delay="1200">
+          <div class="reason-container-icon">
+            <svg class="reason-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"/>
+              <path d="M21 16v2a4 4 0 0 1-4 4h-5"/>
+            </svg>
+          </div>
           <h3>Soporte 24/7</h3>
           <p>Atención personalizada cuando la necesites</p>
           <div class="reason-promo">Siempre aquí</div>
         </div>
-        <div class="reason-card">
-          <div class="reason-container-icon"><svg class="reason-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div>
+
+        <!-- BENEFICIO 6: GARANTÍA TOTAL -->
+        <div class="reason-card scroll-animate" data-animation="slideInUp" data-delay="1400">
+          <div class="reason-container-icon">
+            <svg class="reason-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+          </div>
           <h3>Garantía Total</h3>
           <p>Protección completa en todos tus viajes</p>
           <div class="reason-promo">100% Seguro</div>
         </div>
-        
       </div>
     </section>
 
-
+    <!-- SECCIÓN 6: CALL TO ACTION FINAL-->
     <section class="start-adventure">
-      <div class="adventure-content">
-        <h2>¡Comienza tu aventura hoy!</h2>
-        <p>Explora nuevos destinos, crea recuerdos inolvidables y vive experiencias únicas con TravelWorld.</p>
-        <a href="#contacto" class="btn-adventure">Contáctanos</a>
+      <!-- CONTENIDO MOTIVACIONAL -->
+      <div class="adventure-content scroll-animate" data-animation="fadeInUp" data-delay="0">
+        <h2 class="scroll-animate" data-animation="slideInUp" data-delay="200">¡Comienza tu aventura hoy!</h2>
+        <p class="scroll-animate" data-animation="fadeIn" data-delay="400">Explora nuevos destinos, crea recuerdos inolvidables y vive experiencias únicas con TravelWorld.</p>
+        <!-- BOTÓN DE CONTACTO PRINCIPAL -->
+        <a href="#contacto" class="btn-adventure scroll-animate" data-animation="bounceIn" data-delay="600">Contáctanos</a>
       </div>
     </section>
 
-
-    <!-- CONTACTO -->
-    <section class="contact-container">
+    <!-- SECCIÓN 7: FORMULARIO DE CONTACTO-->
+    <section class="contact-container" id="contacto">
+      <!-- INFORMACIÓN DE CONTACTO -->
       <div class="contact-info animate-on-scroll">
         <div class="info-title">
           <h2>Contáctanos</h2>
@@ -362,10 +447,15 @@
           Ponte en contacto con nuestro equipo de soporte.
         </p>
 
+        <!-- DETALLES DE CONTACTO -->
         <div class="contact-details">
+          <!-- DIRECCIÓN FÍSICA -->
           <div class="contact-item">
             <div class="content-icon">
-              <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+              <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
             </div>
             <div class="content-date">
               <h3>Direccion</h3>
@@ -373,46 +463,65 @@
             </div>
           </div>
           
+          <!-- EMAIL DE CONTACTO -->
           <div class="contact-item">
             <div class="content-icon">
-              <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+              <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/>
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+              </svg>
             </div>
             <div class="content-date">
               <h3>Email</h3>
-            <span>soporte@empresa.com</span>
+              <span>soporte@empresa.com</span>
             </div>
           </div>
+
+          <!-- TELÉFONO DE CONTACTO -->
           <div class="contact-item">
             <div class="content-icon">
-              <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg>
+              <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/>
+              </svg>
             </div>
             <div class="content-date">
               <h3>Teléfono</h3>
               <span>+1 234 567 890</span>
             </div>
           </div>
-
         </div>
 
+        <!-- REDES SOCIALES -->
         <div class="contact-social">
           <h4>Nuestras redes</h4>
           <p>Encuéntranos en nuestras redes sociales</p>
           <div class="social-icons">
+            <!-- FACEBOOK -->
             <div class="content-icons-social">
               <div class="social-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
               </div>
               <div class="contact-blur"></div>
             </div>
+            <!-- TWITTER -->
             <div class="content-icons-social">
               <div class="social-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+                </svg>
               </div>
               <div class="contact-blur"></div>
             </div>
+            <!-- INSTAGRAM -->
             <div class="content-icons-social">
               <div class="social-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                </svg>
               </div>
               <div class="contact-blur"></div>
             </div>
@@ -420,77 +529,152 @@
         </div>
       </div>
 
+      <!-- FORMULARIO DE CONTACTO -->
       <div class="contact-form animate-on-scroll">
         <h2>Envíanos un mensaje</h2>
         <form class="form-content" action="#" method="post">
           <div class="form-row">
+            <!-- CAMPO: NOMBRE -->
             <div class="input-container">
               <label for="">Nombre</label>
               <div class="input-group">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user">
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
                 <input type="text" name="nombre" placeholder="Nombre" required>
               </div>
             </div>
+
+            <!-- CAMPO: EMAIL -->
             <div class="input-container">
               <label for="">Email</label>
               <div class="input-group">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail">
+                  <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/>
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                </svg>
                 <input type="email" name="email" placeholder="Correo Electrónico" required>
               </div>
             </div>
+
+            <!-- CAMPO: MENSAJE -->
             <div class="input-container">
               <label for="">Mensaje</label>
               <div class="input-group">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square-text-icon lucide-message-square-text"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M13 8H7"/><path d="M17 12H7"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square-text-icon lucide-message-square-text">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                  <path d="M13 8H7"/>
+                  <path d="M17 12H7"/>
+                </svg>
                 <textarea name="mensaje" rows="8" placeholder="Mensaje" required></textarea>
               </div>
             </div>
           </div>
+          <!-- BOTÓN DE ENVÍO -->
           <button type="submit">Enviar</button>
         </form>
       </div>
     </section>
 
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-brand">
-        <h3>TravelWorld</h3>
+    <!-- SECCIÓN 8: FOOTER-->
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- INFORMACIÓN DE LA MARCA -->
+        <div class="footer-brand">
+          <h3>TravelWorld</h3>
+          <p>
+            Empresa líder en venta de paquetes turísticos nacionales e
+            internacionales.
+          </p>
+        </div>
+
+        <!-- ENLACES DE NAVEGACIÓN -->
+        <div class="footer-links">
+          <h4>Enlaces</h4>
+          <a href="#">Inicio</a>
+          <a href="#">Ofertas</a>
+          <a href="#">Paquetes</a>
+          <a href="#">Servicios</a>
+          <a href="#">Contacto</a>
+        </div>
+
+        <!-- INFORMACIÓN DE CONTACTO -->
+        <div class="footer-contact">
+          <h4>Contacto</h4>
+          <ul class="contact-content">
+            <li class="contact-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin">
+                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              Av. Principal 123, Ciudad
+            </li>
+            <li class="contact-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/>
+              </svg>
+              +54 9 11 1234 5678
+            </li>
+            <li class="contact-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail">
+                <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/>
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+              </svg>
+              info@travelworld.com
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- COPYRIGHT Y DERECHOS -->
+      <div class="footer-detail">
         <p>&copy; 2025 TravelWorld. Todos los derechos reservados.</p>
       </div>
-      <div class="footer-links">
-        <h4>Enlaces</h4>
-        <a href="#">Inicio</a>
-        <a href="#">Enlaces</a>
-        <a href="#">Contacto</a>
-      </div>
-      <div class="footer-contact">
-        <h4>Contacto</h4>
-        <p>123 Calle Principal, Ciudad, País</p>
-        <p>soporte@travelworld.com</p>
-        <p>+1 234 567 890</p>
-      </div>
-    </div>
-  </footer>
+    </footer>
 
-
+  <!-- SCRIPTS DE FUNCIONALIDAD-->
+  
+  <!-- SCRIPT PRINCIPAL DE ANIMACIONES -->
   <script>
+    /*
+    FUNCIONALIDAD: INTERSECTION OBSERVER PARA ANIMACIONES
+    - Detecta cuando un elemento entra en el viewport
+    - Agrega clase 'in-view' para activar animaciones CSS
+    - Se ejecuta una sola vez por elemento para optimizar rendimiento
+    */
     document.addEventListener("DOMContentLoaded", () => {
       console.log("Documento cargado completamente.");
+      
+      // Configurar observer con threshold del 10%
       const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           console.log(`Observando elemento:`, entry.target);
           if (entry.isIntersecting) {
             console.log(`Elemento en vista:`, entry.target);
+            // Activar animación agregando clase CSS
             entry.target.classList.add("in-view");
           }
         });
       }, { threshold: 0.1 });
 
+      // Observar todos los elementos con clase de animación
       document.querySelectorAll(".animate-on-scroll").forEach(el => {
         console.log("Agregando observador al elemento:", el);
         observer.observe(el);
       });
     });
   </script>
+
+  
+  <!-- Script para animación de contadores numéricos -->
+  <!-- FUNCIONALIDAD: Anima números desde 0 hasta valor target -->
+  <script src="/assets/js/count.js"></script>
+  
+  <!-- Script para funcionalidad de promociones -->
+  <!-- FUNCIONALIDAD: Countdown timer y animaciones de promociones -->
+  <script src="/assets/js/promo.js"></script>
+  <!-- Script para animaciónes de scroll -->
+  <script src="/assets/js/scroll.js"></script>
 </body>
 </html>

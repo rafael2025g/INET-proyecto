@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Paquetes - TravelWorld</title>
+    <link rel="stylesheet" href="/assets/css/paquetes/paquetes.css" />
+  </head>
+  <body class="loaded">
+    <!-- SECCIÓN 1: NAVEGACIÓN PRINCIPAL-->
+    <header>
+      <nav class="navbar">
+        <!-- LOGO DE LA EMPRESA -->
+        <div class="logo">TravelWorld</div>
+
+        <!-- BOTÓN HAMBURGUESA PARA MÓVIL (NUEVO) -->
+        <button
+          class="mobile-menu-toggle"
+          id="mobileMenuToggle"
+          aria-label="Abrir menú"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <!-- MENÚ DE NAVEGACIÓN CON OVERLAY MÓVIL -->
+        <div class="nav-menu" id="navMenu">
+          <!--  OVERLAY PARA MÓVIL (NUEVO) -->
+          <div class="nav-overlay" id="navOverlay"></div>
+
+          <!-- CONTENEDOR DEL MENÚ -->
+          <div class="nav-content">
+            <!-- HEADER DEL MENÚ MÓVIL (NUEVO) -->
+            <div class="mobile-menu-header">
+              <div class="logo">TravelWorld</div>
+              <button
+                class="mobile-menu-close"
+                id="mobileMenuClose"
+                aria-label="Cerrar menú"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+
+            <!-- ENLACES DE NAVEGACIÓN -->
+            <ul class="nav-links">
+              <li><a href="#" class="nav-link">inicio</a></li>
+              <li><a href="#" class="nav-link">ofertas</a></li>
+              <li><a href="#" class="nav-link active">paquetes</a></li>
+              <li><a href="#" class="nav-link">servicios</a></li>
+              <li><a href="#" class="nav-link">contacto</a></li>
+            </ul>
+
+            <!-- BOTONES DE ACCIÓN -->
+            <div class="nav-buttons">
+              <button class="btn-outline">
+                <a href="/pages/login.php">Iniciar sesión</a>
+              </button>
+              <button class="btn-filled">
+                <a href="/pages/register.html">Registrarse</a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      <div class="filters">
+        <h2>Filtros</h2>
+        <div class="filter-categories">
+          <div class="filter-category">
+            <h3>Tipos de viajes</h3>
+            <div class="filter-group" data-filter="type">
+              <button data-value="Individual">Individual</button>
+              <button data-value="Familiar">Familiar</button>
+              <button data-value="Grupal">Grupal</button>
+            </div>
+          </div>
+
+          <div class="filter-category">
+            <h3>Destino</h3>
+            <div class="filter-group" data-filter="destination">
+              <button data-value="Nacional">Nacional</button>
+              <button data-value="Internacional">Internacional</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h3>Precio</h3>
+          <input
+            type="range"
+            min="0"
+            max="200000"
+            step="5000"
+            id="priceRange"
+            value="0"
+          />
+          <div class="range-container">
+            <div class="range-labels" id="priceMin">$0</div>
+            <div class="range-labels">$200,000</div>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h3>Duración</h3>
+          <input
+            type="range"
+            min="1"
+            max="15"
+            step="1"
+            id="durationRange"
+            value="1"
+          />
+          <div class="range-container">
+            <div class="range-labels" id="durationMin">1 día</div>
+            <div class="range-labels">15 días</div>
+          </div>
+        </div>
+
+        <div class="filter-buttons">
+          <button class="btn-filter" id="apply-filters">Aplicar Filtros</button>
+          <button class="btn-clear" id="clear-filters" style="display: none">
+            Limpiar Filtros
+          </button>
+        </div>
+
+        <div class="results-count" id="results-count">
+          <span id="filtered-count"></span> <span id="total-count"></span>
+        </div>
+      </div>
+
+      <!-- SECTION: PAQUETES TURÍSTICOS -->
+      <section class="packages" id="packages-container">
+        <!-- Tarjeta de paquete 1 -->
+        <div
+          class="package-card"
+          data-type="Familiar"
+          data-destination="Internacional"
+          data-price="95000"
+          data-duration="6"
+        >
+          <div class="discount-badge">10% OFF</div>
+          <img
+            src="https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=300&h=200&fit=crop"
+            class="package-img"
+            alt="Viaje a París"
+          />
+          <div class="card-content">
+            <h3 class="ellipsis">Viaje a París</h3>
+            <p class="ellipsis">5 noches en hotel 4 estrellas con desayuno</p>
+            <div class="price-duration">
+              <div class="price-row">
+                <span class="new-price">$95,000</span>
+                <span class="old-price">$105,000</span>
+              </div>
+              <div class="duration">6 días</div>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-secondary">
+                <a href="./paquete-detail.html">Ver detalles</a>
+              </button>
+              <button class="btn btn-primary">Agregar</button>
+            </div>
+          </div>
+        </div>
+        <!-- Tarjeta de paquete 2 -->
+        <div
+          class="package-card"
+          data-type="Individual"
+          data-destination="Nacional"
+          data-price="72000"
+          data-duration="4"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop"
+            class="package-img"
+            alt="Aventura en la Patagonia"
+          />
+          <div class="card-content">
+            <h3 class="ellipsis">Aventura en la Patagonia</h3>
+            <p class="ellipsis">
+              Excursión por el Parque Nacional y estadía en cabañas
+            </p>
+            <div class="price-duration">
+              <div class="price-row">
+                <span class="new-price">$72,000</span>
+              </div>
+              <div class="duration">4 días</div>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-secondary">
+                <a href="./paquete-detail.html">Ver detalles</a>
+              </button>
+              <button class="btn btn-primary">Agregar</button>
+            </div>
+          </div>
+        </div>
+        <!-- Tarjeta de paquete 3 -->
+
+        <div
+          class="package-card"
+          data-type="Familiar"
+          data-destination="Nacional"
+          data-price="45000"
+          data-duration="3"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300&h=200&fit=crop"
+            class="package-img"
+            alt="Escapada a Bariloche"
+          />
+          <div class="card-content">
+            <h3 class="ellipsis">Escapada a Bariloche</h3>
+            <p class="ellipsis">3 noches en hotel con vista al lago</p>
+            <div class="price-duration">
+              <div class="price-row">
+                <span class="new-price">$45,000</span>
+              </div>
+              <div class="duration">3 días</div>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-secondary">
+                <a href="./paquete-detail.html">Ver detalles</a>
+              </button>
+              <button class="btn btn-primary">Agregar</button>
+            </div>
+          </div>
+        </div>
+        <!-- Tarjeta de paquete 4 -->
+
+        <div
+          class="package-card"
+          data-type="Grupal"
+          data-destination="Internacional"
+          data-price="180000"
+          data-duration="15"
+        >
+          <div class="discount-badge">15% OFF</div>
+          <img
+            src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=300&h=200&fit=crop"
+            class="package-img"
+            alt="Tour por Europa"
+          />
+          <div class="card-content">
+            <h3 class="ellipsis">Tour por Europa</h3>
+            <p class="ellipsis">15 días visitando 8 países europeos</p>
+            <div class="price-duration">
+              <div class="price-row">
+                <span class="new-price">$180,000</span>
+                <span class="old-price">$212,000</span>
+              </div>
+              <div class="duration">15 días</div>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-secondary">Ver detalles</button>
+              <button class="btn btn-primary">Agregar</button>
+            </div>
+          </div>
+        </div>
+        <!-- Tarjeta de paquete 5 -->
+
+        <div
+          class="package-card"
+          data-type="Individual"
+          data-destination="Nacional"
+          data-price="35000"
+          data-duration="2"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop"
+            class="package-img"
+            alt="Mendoza Vinos"
+          />
+          <div class="card-content">
+            <h3 class="ellipsis">Mendoza Vinos</h3>
+            <p class="ellipsis">Tour de bodegas y degustación de vinos</p>
+            <div class="price-duration">
+              <div class="price-row">
+                <span class="new-price">$35,000</span>
+              </div>
+              <div class="duration">2 días</div>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-secondary">
+                <a href="./paquete-detail.html">Ver detalles</a>
+              </button>
+              <button class="btn btn-primary">Agregar</button>
+            </div>
+          </div>
+        </div>
+        <!-- Tarjeta de paquete 6 -->
+
+        <div
+          class="package-card"
+          data-type="Familiar"
+          data-destination="Internacional"
+          data-price="120000"
+          data-duration="8"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=300&h=200&fit=crop"
+            class="package-img"
+            alt="Caribe Tropical"
+          />
+          <div class="card-content">
+            <h3 class="ellipsis">Caribe Tropical</h3>
+            <p class="ellipsis">7 noches en resort todo incluido</p>
+            <div class="price-duration">
+              <div class="price-row">
+                <span class="new-price">$120,000</span>
+              </div>
+              <div class="duration">8 días</div>
+            </div>
+            <div class="btn-row">
+              <button class="btn btn-secondary">
+                <a href="./paquete-detail.html">Ver detalles</a>
+              </button>
+              <button class="btn btn-primary">Agregar</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="no-results" id="no-results" style="display: none">
+        <h3>No se encontraron paquetes</h3>
+        <p>No hay paquetes que coincidan con los filtros seleccionados.</p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h3>TravelWorld</h3>
+          <p>
+            Empresa líder en venta de paquetes turísticos nacionales e
+            internacionales.
+          </p>
+        </div>
+        <div class="footer-links">
+          <h4>Enlaces</h4>
+          <a href="#">Inicio</a>
+          <a href="#">Ofertas</a>
+          <a href="#">Paquetes</a>
+          <a href="#">Servicios</a>
+          <a href="#">Contacto</a>
+        </div>
+        <div class="footer-contact">
+          <h4>Contacto</h4>
+          <ul class="contact-content">
+            <li class="contact-item">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
+                />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Av. Principal 123, Ciudad
+            </li>
+            <li class="contact-item">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"
+                />
+              </svg>
+              +54 9 11 1234 5678
+            </li>
+            <li class="contact-item">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+              </svg>
+              info@travelworld.com
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-detail">
+        <p>&copy; 2025 TravelWorld. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <script src="../assets/js/script.js"></script>
+  </body>
+</html>

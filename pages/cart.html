@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/css/cart/cart.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <!-- LOGO DE LA EMPRESA -->
+        <div class="logo">TravelWorld</div>
+
+        <!-- BOTÓN HAMBURGUESA PARA MÓVIL (NUEVO) -->
+        <button
+          class="mobile-menu-toggle"
+          id="mobileMenuToggle"
+          aria-label="Abrir menú"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <!-- MENÚ DE NAVEGACIÓN CON OVERLAY MÓVIL -->
+        <div class="nav-menu" id="navMenu">
+          <!--  OVERLAY PARA MÓVIL (NUEVO) -->
+          <div class="nav-overlay" id="navOverlay"></div>
+
+          <!-- CONTENEDOR DEL MENÚ -->
+          <div class="nav-content">
+            <!-- HEADER DEL MENÚ MÓVIL (NUEVO) -->
+            <div class="mobile-menu-header">
+              <div class="logo">TravelWorld</div>
+              <button
+                class="mobile-menu-close"
+                id="mobileMenuClose"
+                aria-label="Cerrar menú"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+
+            <!-- ENLACES DE NAVEGACIÓN -->
+            <ul class="nav-links">
+              <li><a href="/index.html" class="nav-link active">inicio</a></li>
+              <li>
+                <a href="/index.html#promoSection" class="nav-link">ofertas</a>
+              </li>
+              <li>
+                <a href="/pages/paquetes.html" class="nav-link">paquetes</a>
+              </li>
+              <li>
+                <a href="/index.html#servicios" class="nav-link">servicios</a>
+              </li>
+              <li>
+                <a href="/index.html#contacto" class="nav-link">contacto</a>
+              </li>
+            </ul>
+
+            <!-- BOTONES DE ACCIÓN -->
+            <div class="nav-buttons">
+              <button class="btn-outline">
+                <a href="/pages/login.php">Iniciar sesión</a>
+              </button>
+              <button class="btn-filled">
+                <a href="/pages/register.html">Registrarse</a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <section class="cart-container">
+      <div class="cart-list">
+        <h2>Tu carrito</h2>
+
+        <!-- Item 1 -->
+        <div class="cart-item">
+          <img src="https://placehold.co/100x70" alt="París Romántico" />
+          <div class="item-details">
+            <h3>París Romántico</h3>
+            <p>5 días</p>
+            <div class="item-quantity">
+              <button>-</button>
+              <span>1</span>
+              <button>+</button>
+            </div>
+          </div>
+          <div class="item-price">
+            <p>$1599</p>
+            <button class="delete-btn">🗑️</button>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="cart-item">
+          <img src="https://placehold.co/100x70" alt="Cancún Todo Incluido" />
+          <div class="item-details">
+            <h3>Cancún Todo Incluido</h3>
+            <p>7 días</p>
+            <div class="item-quantity">
+              <button>-</button>
+              <span>1</span>
+              <button>+</button>
+            </div>
+          </div>
+          <div class="item-price">
+            <p>$1104.15 <span class="old-price">$1299</span></p>
+            <button class="delete-btn">🗑️</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resumen -->
+      <div class="cart-summary">
+        <h3>Resumen de compra</h3>
+        <p><strong>Subtotal:</strong> $2703.15</p>
+        <p><strong>Impuestos:</strong> $513.60</p>
+        <p><strong>Total:</strong> <span class="total-price">$3216.75</span></p>
+        <button class="checkout-btn">Procesar al pago</button>
+        <button class="empty-btn">Vaciar carrito</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- INFORMACIÓN DE LA MARCA -->
+        <div class="footer-brand">
+          <h3>TravelWorld</h3>
+          <p>
+            Empresa líder en venta de paquetes turísticos nacionales e
+            internacionales.
+          </p>
+        </div>
+
+        <!-- ENLACES DE NAVEGACIÓN -->
+        <div class="footer-links">
+          <h4>Enlaces</h4>
+          <a href="#">Inicio</a>
+          <a href="#">Ofertas</a>
+          <a href="#">Paquetes</a>
+          <a href="#">Servicios</a>
+          <a href="#">Contacto</a>
+        </div>
+
+        <!-- INFORMACIÓN DE CONTACTO -->
+        <div class="footer-contact">
+          <h4>Contacto</h4>
+          <ul class="contact-content">
+            <li class="contact-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin">
+                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              Av. Principal 123, Ciudad
+            </li>
+            <li class="contact-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/>
+              </svg>
+              +54 9 11 1234 5678
+            </li>
+            <li class="contact-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail">
+                <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/>
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+              </svg>
+              info@travelworld.com
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- COPYRIGHT Y DERECHOS -->
+      <div class="footer-detail">
+        <p>&copy; 2025 TravelWorld. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+     <!-- SCRIPT PRINCIPAL DE ANIMACIONES -->
+  <script>
+    /*
+    FUNCIONALIDAD: INTERSECTION OBSERVER PARA ANIMACIONES
+    - Detecta cuando un elemento entra en el viewport
+    - Agrega clase 'in-view' para activar animaciones CSS
+    - Se ejecuta una sola vez por elemento para optimizar rendimiento
+    */
+    document.addEventListener("DOMContentLoaded", () => {
+      console.log("Documento cargado completamente.");
+      
+      // Configurar observer con threshold del 10%
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          console.log(`Observando elemento:`, entry.target);
+          if (entry.isIntersecting) {
+            console.log(`Elemento en vista:`, entry.target);
+            // Activar animación agregando clase CSS
+            entry.target.classList.add("in-view");
+          }
+        });
+      }, { threshold: 0.1 });
+
+      // Observar todos los elementos con clase de animación
+      document.querySelectorAll(".animate-on-scroll").forEach(el => {
+        console.log("Agregando observador al elemento:", el);
+        observer.observe(el);
+      });
+    });
+  </script> 
+  </body>
+</html>

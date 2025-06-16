@@ -200,7 +200,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("/assets/images/patagonia.jpg");
+  background-image: url("../../images/patagonia.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -687,6 +687,13 @@ body {
 /* MÓVILES GRANDES (481px - 768px) */
 @media screen and (max-width: 768px) {
   /* NAVEGACIÓN MÓVIL */
+  .navbar{
+    width: 100%;
+    position: fixed;
+  }
+  .navbar .logo{
+    visibility: hidden;
+  }
   .mobile-menu-toggle {
     display: flex;
   }

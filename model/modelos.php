@@ -7,7 +7,7 @@ define("KEY", "develoteca");
 define("COD", "AES-128-ECB");
 define("KEY_TOKEN", "APR.wqc-354*");
 
-// --- Función para guardar imagen como BLOB ---
+// --- Función para guardar paquete turístico ---
 if(isset($_POST["ingresar"])){
     
     $dias=$_POST["dias"];
@@ -16,26 +16,71 @@ if(isset($_POST["ingresar"])){
     $descripcion=$_POST["descripcion"];
     $lugar=$_POST["lugar"];
     $titulo=$_POST["titulo"];
+    $descuento=$_POST["descuento"];
     $imagen=addslashes(file_get_contents($_FILES['img']['tmp_name']));
-    include('../controller/conexionbd.php');
-
     
     //consulta
-    $consulta_Sql="INSERT INTO indumentaria(imagen, título, descripcion, precio, stock, lugar, dias)VALUES('$imagen', '$titulo', '$descripcion', '$precio', '$stock', '$lugar', '$dias')";
+    $consulta_Sql="INSERT INTO ventas(imagen, titulo, descripcion, precio, stock, lugar, dias, descuento) VALUES('$imagen', '$titulo', '$descripcion', '$precio', '$stock', '$lugar', '$dias', '$descuento')";
     $validacion=mysqli_query($Ruta, $consulta_Sql);
     if($validacion){
-        echo 'registo';
+        echo '<script>alert("Paquete registrado exitosamente"); window.location.href="../pages/paquetes.php";</script>';
         
     }
     else{
-        echo 'No Registrado';
+        echo '<script>alert("Error al registrar paquete");</script>';
     }
 }
 
-// --- Lógica del carrito ---
-$mensaje = "";
+// --- Función para actualizar paquete ---
+if(isset($_POST["actualizar"])){
+    
+    $id = $_POST["id"];
+    $dias=$_POST["dias"];
+    $stock=$_POST["cantidad"];
+    $precio=$_POST["precio"];
+    $descripcion=$_POST["descripcion"];
+    $lugar=$_POST["lugar"];
+    $titulo=$_POST["titulo"];
+    $descuento=$_POST["descuento"];
+    
+    if($_FILES['img']['size'] > 0) {
+        $imagen=addslashes(file_get_contents($_FILES['img']['tmp_name']));
+        $consulta_Sql="UPDATE ventas SET imagen='$imagen', titulo='$titulo', descripcion='$descripcion', precio='$precio', stock='$stock', lugar='$lugar', dias='$dias', descuento='$descuento' WHERE ID_Producto='$id'";
+    } else {
+        $consulta_Sql="UPDATE ventas SET titulo='$titulo', descripcion='$descripcion', precio='$precio', stock='$stock', lugar='$lugar', dias='$dias', descuento='$descuento' WHERE ID_Producto='$id'";
+    }
+    
+    $validacion=mysqli_query($Ruta, $consulta_Sql);
+    if($validacion){
+        echo '<script>alert("Paquete actualizado exitosamente"); window.location.href="../pages/paquetes.php";</script>';
+    }
+    else{
+        echo '<script>alert("Error al actualizar paquete");</script>';
+    }
+}
+
+// --- Función para eliminar paquete ---
+if(isset($_POST["eliminar"])){
+    $id = $_POST["id"];
+    $consulta_Sql="DELETE FROM ventas WHERE ID_Producto='$id'";
+    $validacion=mysqli_query($Ruta, $consulta_Sql);
+    if($validacion){
+        echo '<script>alert("Paquete eliminado exitosamente"); window.location.href="../pages/paquetes.php";</script>';
+    }
+    else{
+        echo '<script>alert("Error al eliminar paquete");</script>';
+    }
+}
+
+// --- Lógica del carrito (solo para clientes) ---
 
 if (isset($_POST['btnAccion'])) {
+    // Verificar que el usuario esté logueado y sea cliente
+    if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'cliente') {
+        header("Location: login.php");
+        exit();
+    }
+    
     switch ($_POST['btnAccion']) {
         case 'agregar':
             $id = openssl_decrypt($_POST['id'], COD, KEY);
@@ -43,7 +88,7 @@ if (isset($_POST['btnAccion'])) {
             $precio = openssl_decrypt($_POST['precio'], COD, KEY);
             $cantidad = openssl_decrypt($_POST['cantidad'], COD, KEY);
 
-            if (is_numeric($id) && is_string($modelo) && is_numeric($precio) && is_numeric($cantidad)) {
+            if (is_numeric($id) && is_string($titulo) && is_numeric($precio) && is_numeric($cantidad)) {
                 $producto = [
                     'id' => $id,
                     'titulo' => $titulo,
@@ -51,8 +96,11 @@ if (isset($_POST['btnAccion'])) {
                     'cantidad' => $cantidad
                 ];
 
+                if (!isset($_SESSION['carrito'])) {
+                    $_SESSION['carrito'] = [];
+                }
                 $_SESSION['carrito'][] = $producto;
-                $mensaje = print_r($_SESSION, true);
+                $mensaje = "Producto agregado al carrito";
             } else {
                 $mensaje = "Datos del producto no válidos.";
             }
@@ -70,16 +118,21 @@ if (isset($_POST['btnAccion'])) {
                 }
             }
             break;
+
+        case 'vaciar':
+            $_SESSION['carrito'] = [];
+            break;
     }
 }
 
 // --- Login de usuario ---
-if (!empty($_POST["login"])) {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (!empty($_POST["usuario"]) && !empty($_POST["contraseña"])) {
+        var_dump($_POST);
         $usuario = $_POST["usuario"];
         $contraseña = $_POST["contraseña"];
 
-        $consulta_sql = $Ruta->prepare("SELECT * FROM usuario WHERE usuario = ? OR gmail = ?");
+        $consulta_sql = $Ruta->prepare("SELECT * FROM usuario WHERE usuario = ? OR email = ?");
         $consulta_sql->bind_param("ss", $usuario, $usuario);
         $consulta_sql->execute();
         $resultado = $consulta_sql->get_result();
@@ -88,10 +141,10 @@ if (!empty($_POST["login"])) {
            
             if (password_verify($contraseña, $fila['contraseña'])) {
                $_SESSION['rol'] = $fila['rol'];
-               $_SESSION['nombre'] = $fila['nombre'];
                $_SESSION['usuario'] = $fila['usuario'];
+               $_SESSION['ID_usuario'] = $fila['ID_usuario'];
 
-                header("Location: pagina/inicio.php");
+                header("Location: ../index.php");
                 exit();
             } else {
                 echo "Contraseña incorrecta.";
@@ -99,34 +152,60 @@ if (!empty($_POST["login"])) {
         } else {
             echo "Usuario no encontrado.";
         }
-        $stmt->close();
+        $consulta_sql->close();
     } else {
         echo "Completa ambos campos.";
     }
 }
 
 // --- Registro de nuevo usuario ---
-if (!empty($_POST["usuario"])) {
-    $nombre = $_POST["nombre"];
-    $apellido = $_POST["apellido"];
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $usuario = $_POST["usuario"];
-    $gmail = $_POST["gmail"];
+    $email = $_POST["email"];
     $contraseña = $_POST["contraseña"];
     $telefono = $_POST["telefono"];
-    $rol = $_POST["rol"];
+    $rol = "cliente"; // Por defecto todos son clientes
 
     $contraseña_encry = password_hash($contraseña, PASSWORD_BCRYPT);
 
-    $stmt = $Ruta->prepare("INSERT INTO usuario(nombre, apellido, usuario, gmail, contraseña,telefono,rol) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssss", $nombre, $apellido, $usuario, $gmail, $contraseña_encry,$telefono,$rol);
+    $stmt = $Ruta->prepare("INSERT INTO usuario(usuario, contraseña, email, telefono, rol) 
+                            VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssis", $usuario, $contraseña_encry, $email, $telefono, $rol);
 
     if ($stmt->execute()) {
-        header("Location: ../pagina/iniciar.php");
+        header("Location: ../pages/login.php");
         exit();
     } else {
         echo "Error al registrar usuario.";
     }
     $stmt->close();
+}
+
+// --- Función para obtener paquetes ---
+function obtenerPaquetes() {
+    global $Ruta;
+    $consulta = "SELECT * FROM ventas ORDER BY titulo ASC";
+    $resultado = mysqli_query($Ruta, $consulta);
+    return $resultado;
+}
+
+// --- Función para obtener paquete por ID ---
+function obtenerPaquetePorId($id) {
+    global $Ruta;
+    $consulta = $Ruta->prepare("SELECT * FROM ventas WHERE ID_Producto = ?");
+    $consulta->bind_param("i", $id);
+    $consulta->execute();
+    $resultado = $consulta->get_result();
+    return $resultado->fetch_assoc();
+}
+
+// --- Función para verificar si el usuario puede comprar ---
+function puedeComprar() {
+    return isset($_SESSION['usuario']) && $_SESSION['rol'] === 'cliente';
+}
+
+// --- Función para verificar si es admin ---
+function esAdmin() {
+    return isset($_SESSION['usuario']) && $_SESSION['rol'] === 'admin';
 }
 ?>

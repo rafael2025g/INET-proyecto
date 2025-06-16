@@ -1,4 +1,3 @@
-
 /* SECCIÓN PRINCIPAL DE PROMOCIONES*/
 .promo-section {
   position: relative;
@@ -80,11 +79,7 @@
   margin-top: 2rem;
 }
 
-/* 
-========================================
-CONTENIDO DE ENCABEZADO
-========================================
-*/
+/* CONTENIDO DE ENCABEZADO*/
 .promo-content {
   width: 100%;
   display: flex;
@@ -152,11 +147,7 @@ CONTENIDO DE ENCABEZADO
   color: #f3f3f3;
 }
 
-/* 
-========================================
-TARJETA PRINCIPAL RESPONSIVE
-========================================
-*/
+/* TARJETA PRINCIPAL RESPONSIVE*/
 .promo-main {
   padding: 1.5rem;
   background: linear-gradient(135deg, #db3a1d 0%, #ff418a 100%);
@@ -238,11 +229,7 @@ TARJETA PRINCIPAL RESPONSIVE
   animation: pulse 2s infinite;
 }
 
-/* 
-========================================
-INFORMACIÓN DE PROMOCIÓN RESPONSIVE
-========================================
-*/
+/* INFORMACIÓN DE PROMOCIÓN RESPONSIVE*/
 .promo-info-title {
   display: flex;
   align-items: center;
@@ -335,11 +322,7 @@ INFORMACIÓN DE PROMOCIÓN RESPONSIVE
   box-shadow: 0 10px 20px rgba(91, 106, 241, 0.4);
 }
 
-/* 
-========================================
-PROMOCIONES LATERALES RESPONSIVE
-========================================
-*/
+/* PROMOCIONES LATERALES RESPONSIVE*/
 .promo-side {
   display: flex;
   flex-direction: column;
@@ -463,6 +446,8 @@ PROMOCIONES LATERALES RESPONSIVE
 
 .promo-small button {
   width: 100%;
+  display: flex;
+  justify-content: center;
   padding: 1rem 0.8rem;
   font-size: clamp(0.8rem, 2vw, 0.9rem);
   font-weight: bold;

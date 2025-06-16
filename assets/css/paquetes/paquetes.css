@@ -736,7 +736,7 @@ body:not(.loaded) .filters {
   }
 }
 
-@media (max-width: 1024px) {
+@media screen and(max-width: 1024px) {
 
   .navbar {
     padding: 1rem;
@@ -746,7 +746,6 @@ body:not(.loaded) .filters {
     flex-direction: column;
   }
   
-
   .filters {
     width: 100%;
   }
@@ -773,8 +772,15 @@ body:not(.loaded) .filters {
   }
 }
 
-@media (max-width: 768px) {
+@media screen and(max-width: 768px) {
   /* NAVEGACIÓN MÓVIL */
+  .navbar{
+    width: 100%;
+    position: fixed;
+  }
+  .navbar .logo{
+    visibility: hidden;
+  }
   .mobile-menu-toggle {
     display: flex;
   }
@@ -817,6 +823,8 @@ body:not(.loaded) .filters {
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
+    padding: 0;
+    gap: 0;
     transform: translateX(100%);
     transition: transform 0.3s ease;
     overflow-y: auto;

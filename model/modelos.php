@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../controller/conexionbd.php');
+include __DIR__ . '/../controller/conexionbd.php';
 
 // Claves y constantes
 define("KEY", "develoteca");
@@ -126,9 +126,8 @@ if (isset($_POST['btnAccion'])) {
 }
 
 // --- Login de usuario ---
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if (isset($_POST['login'])) {
     if (!empty($_POST["usuario"]) && !empty($_POST["contraseña"])) {
-        var_dump($_POST);
         $usuario = $_POST["usuario"];
         $contraseña = $_POST["contraseña"];
 
@@ -138,11 +137,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $resultado = $consulta_sql->get_result();
 
         if ($fila = $resultado->fetch_assoc()) {
-           
             if (password_verify($contraseña, $fila['contraseña'])) {
-               $_SESSION['rol'] = $fila['rol'];
-               $_SESSION['usuario'] = $fila['usuario'];
-               $_SESSION['ID_usuario'] = $fila['ID_usuario'];
+                $_SESSION['rol'] = $fila['rol'];
+                $_SESSION['usuario'] = $fila['usuario'];
+                $_SESSION['ID_usuario'] = $fila['ID_usuario'];
 
                 header("Location: ../index.php");
                 exit();
@@ -156,29 +154,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
         echo "Completa ambos campos.";
     }
-}
-
-// --- Registro de nuevo usuario ---
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $usuario = $_POST["usuario"];
-    $email = $_POST["email"];
-    $contraseña = $_POST["contraseña"];
-    $telefono = $_POST["telefono"];
-    $rol = "cliente"; // Por defecto todos son clientes
-
-    $contraseña_encry = password_hash($contraseña, PASSWORD_BCRYPT);
-
-    $stmt = $Ruta->prepare("INSERT INTO usuario(usuario, contraseña, email, telefono, rol) 
-                            VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssis", $usuario, $contraseña_encry, $email, $telefono, $rol);
-
-    if ($stmt->execute()) {
-        header("Location: ../pages/login.php");
-        exit();
-    } else {
-        echo "Error al registrar usuario.";
-    }
-    $stmt->close();
 }
 
 // --- Función para obtener paquetes ---

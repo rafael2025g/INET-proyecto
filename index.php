@@ -1,3 +1,7 @@
+<?php
+include('model/modelos.php');
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -51,13 +55,36 @@
             
             <!-- BOTONES DE ACCIÓN -->
             <div class="nav-buttons">
-              <button class="btn-outline">
-                <a href="pages/login.php">Iniciar sesión</a>
-              </button>
-              <button class="btn-filled">
-                <a href="pages/register.php">Registrarse</a>
-              </button>
-            </div>
+
+  <?php if(isset($_SESSION['usuario'])): ?>
+    <span>Hola, <?php echo htmlspecialchars($_SESSION['usuario']); ?></span>
+    
+    <?php if($_SESSION['rol'] === 'cliente'): ?>
+      <!-- Opciones para clientes -->
+      <button class="btn-filled">
+        <a href="pages/cart.php">Carrito (<?php echo isset($_SESSION['carrito']) ? count($_SESSION['carrito']) : 0; ?>)</a>
+      </button>
+    <?php elseif($_SESSION['rol'] === 'admin'): ?>
+      <!-- Opciones para administradores -->
+      <button class="btn-filled">
+        <a href="pages/admin-panel.php">Agregar Producto</a>
+      </button>
+    <?php endif; ?>
+    
+    <button class="btn-outline">
+      <a href="pages/logout.php">Cerrar Sesión</a>
+    </button>
+  
+  <?php else: ?>
+    <button class="btn-outline">
+      <a href="pages/login.php">Iniciar sesión</a>
+    </button>
+    <button class="btn-filled">
+      <a href="pages/register.php">Registrarse</a>
+    </button>
+  <?php endif; ?>
+</div>
+
           </div>
         </div>
       </nav>

@@ -1,4 +1,4 @@
-<?php include('../model/modelos.php');?>
+<?php include('../model/r.php');?>
 <!DOCTYPE html>
 <html lang="es">
   <head>

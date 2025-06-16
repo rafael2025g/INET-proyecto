@@ -1,4 +1,4 @@
-<?php include('../model/modelos.php');?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,7 +10,7 @@
 </head>
 <body>
   <div class="login-container">
-    <form class="login-form" method="POST">
+    <form class="login-form" method="POST" action="../model/modelos.php">
       <h2>Iniciar sesión</h2>
 
       <div class="input-field">

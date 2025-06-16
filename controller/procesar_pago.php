@@ -1,69 +1,79 @@
 <?php
-include('conexionbd.php');
+
 session_start();
-$ID_usuario = $_SESSION['ID_usuario']; // Asegurate que el ID esté en sesión
+include 'conexionbd.php';
 
-// 1. Obtener todos los productos del carrito del usuario
-$query = $Ruta->prepare("SELECT ID_Producto, cantidad FROM carrito WHERE ID_usuario = ?");
-$query->bind_param("i", $ID_usuario);
-$query->execute();
-$result = $query->get_result();
+if (!isset($_SESSION['ID_usuario'])) {
+    die("No está logueado.");
+}
 
-$productos = [];
+$ID_usuario = $_SESSION['ID_usuario'];
+$productos = $_SESSION['carrito'] ?? [];
+
+if (empty($productos)) {
+    die("Carrito vacío.");
+}
+
 $monto_total = 0;
 
-while ($row = $result->fetch_assoc()) {
-    $productos[] = $row;
-    
-    // Obtener precio para calcular el total
-    $precioStmt = $Ruta->prepare("SELECT precio FROM ventas WHERE ID_Producto = ?");
-    $precioStmt->bind_param("i", $row['ID_producto']);
-    $precioStmt->execute();
-    $precioRes = $precioStmt->get_result()->fetch_assoc();
-    
-    $monto_total += $precioRes['precio'] * $row['cantidad'];
-    $precioStmt->close();
+// Calcular monto total y validar datos
+foreach ($productos as $item) {
+    $ID_producto = $item['id'];
+    $cantidad = $item['cantidad'];
+
+    $stmt = $Ruta->prepare("SELECT precio, stock FROM ventas WHERE ID_Producto = ?");
+    $stmt->bind_param("i", $ID_producto);
+    $stmt->execute();
+    $res = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
+
+    if (!$res) {
+        die("Producto no encontrado: $ID_producto");
+    }
+    if ($res['stock'] < $cantidad) {
+        die("Stock insuficiente para el producto ID $ID_producto");
+    }
+
+    $monto_total += $res['precio'] * $cantidad;
 }
 
-// 2. Insertar el pago
-$metodo = "tarjeta"; // Esto puede venir de un formulario
-$stmtPago = $Ruta->prepare("INSERT INTO pagos (ID_usuario, ID_carrito, monto, metodo, estado) VALUES (?, 0, ?, ?, 'completado')");
-$stmtPago->bind_param("ids", $ID_usuario, $monto_total, $metodo);
+// Insertar pago
+$stmtPago = $Ruta->prepare("INSERT INTO pagos (ID_usuario, total_pago) VALUES (?, ?)");
+$stmtPago->bind_param("id", $ID_usuario, $monto_total);
 $stmtPago->execute();
 $ID_pago = $stmtPago->insert_id;
-echo "<pre>";
-print_r($carrito);
-echo "</pre>";
-// 3. Insertar en detalle_pago y descontar stock
-foreach($carrito as $item) {
-    $id_producto = $item['id'];
+$stmtPago->close();
+
+// Insertar detalle y actualizar stock
+foreach ($productos as $item) {
+    $ID_producto = $item['id'];
     $cantidad = $item['cantidad'];
-    $subtotal = $item['precio'] * $cantidad;
 
-    // DEBUG
-    echo "Insertando: Producto $id_producto, Cantidad $cantidad, Total $subtotal<br>";
+    // Precio calculado antes, se puede repetir si quieres
+    $stmtPrecio = $Ruta->prepare("SELECT precio FROM ventas WHERE ID_Producto = ?");
+    $stmtPrecio->bind_param("i", $ID_producto);
+    $stmtPrecio->execute();
+    $precio = $stmtPrecio->get_result()->fetch_assoc()['precio'];
+    $stmtPrecio->close();
 
-    // Insertar en carrito
-    $sql = "INSERT INTO carrito (ID_producto, cantidad, total, ID_usuario) VALUES (?, ?, ?, ?)";
-    $stmt = $Ruta->prepare($sql);
-    $stmt->execute([$id_producto, $cantidad, $subtotal, $ID_usuario]);
+    $subtotal = $precio * $cantidad;
 
-    // Actualizar stock
-    $sqlStock = "UPDATE ventas SET stock = stock - ? WHERE ID_Producto = ?";
-    $stmtStock = $Ruta->prepare($sqlStock);
-    $stmtStock->execute([$cantidad, $id_producto]);
+    $stmtDetalle = $Ruta->prepare("INSERT INTO detalle_pago (ID_pago, ID_producto, cantidad, subtotal) VALUES (?, ?, ?, ?)");
+    $stmtDetalle->bind_param("iiii", $ID_pago, $ID_producto, $cantidad, $subtotal);
+    $stmtDetalle->execute();
+    $stmtDetalle->close();
 
-    // DEBUG stock
-    echo "Actualizando stock de producto $id_producto, restando $cantidad<br>";
+    $stmtStock = $Ruta->prepare("UPDATE ventas SET stock = stock - ? WHERE ID_Producto = ?");
+    $stmtStock->bind_param("ii", $cantidad, $ID_producto);
+    $stmtStock->execute();
+    $stmtStock->close();
 }
 
+// Vaciar carrito en sesión
+unset($_SESSION['carrito']);
 
-// 4. Vaciar carrito
-$stmtClear = $Ruta->prepare("DELETE FROM carrito WHERE ID_usuario = ?");
-$stmtClear->bind_param("i", $ID_usuario);
-$stmtClear->execute();
-
-// 5. Redirigir
+// Redirigir a confirmación
 header("Location: ../pages/confirmacion.php");
 exit();
+
 ?>

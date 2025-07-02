@@ -9,7 +9,7 @@ $paquetes = obtenerPaquetes();
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Paquetes - TravelWorld</title>
     <link rel="stylesheet" href="../assets/css/paquetes/paquetes.css" />
-    <link rel="stylesheet" href="../assets/css/historial-button.css">
+    <link rel="stylesheet" href="../assets/css/historial/historial-button.css">
   </head>
   <body class="loaded">
     <!-- SECCIÓN 1: NAVEGACIÓN PRINCIPAL-->
@@ -58,42 +58,35 @@ $paquetes = obtenerPaquetes();
             <ul class="nav-links">
               <li><a href="../index.php" class="nav-link">inicio</a></li>
               <li><a href="../index.php#promoSection" class="nav-link">ofertas</a></li>
-              <li><a href="paquetes.php" class="nav-link active">paquetes</a></li>
+              <li><a href="./paquetes.php" class="nav-link active">paquetes</a></li>
               <li><a href="../index.php#servicios" class="nav-link">servicios</a></li>
               <li><a href="../index.php#contacto" class="nav-link">contacto</a></li>
             </ul>
 
             <div class="nav-buttons">
               <?php if(isset($_SESSION['usuario'])): ?>
-                <span>Hola, <?php echo $_SESSION['usuario']; ?></span>
+                
+                <span class='nav-user'><img src="../assets/images/user.png" alt=""></span>
                 
                 <?php if($_SESSION['rol'] === 'cliente'): ?>
                   <!-- Opciones para clientes -->
-                  <button class="btn-filled">
-                    <a href="cart.php">Carrito (<?php echo isset($_SESSION['carrito']) ? count($_SESSION['carrito']) : 0; ?>)</a>
-                  </button>
-                  <button class="btn-outline">
-                    <a href="historial.php">Mi Historial</a>
+                  <button class="btn-cart">
+                    <a href="cart.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg><?php echo isset($_SESSION['carrito']) ? count($_SESSION['carrito']) : 0; ?>+</a>
                   </button>
                 <?php elseif($_SESSION['rol'] === 'admin'): ?>
                   <!-- Opciones para administradores -->
-                  <button class="btn-filled">
-                    <a href="admin-panel.php">Agregar Producto</a>
-                  </button>
-                  <button class="btn-outline">
-                    <a href="historial.php">Ver Historial</a>
-                  </button>
+                  <button><a href="./admin-panel.php">Agregar Producto</a>  </button>
                 <?php endif; ?>
                 
-                <button class="btn-outline">
-                  <a href="logout.php">Cerrar Sesión</a>
+                <button class="btn-login">
+                  <a href="./logout.php">Cerrar Sesión</a>
                 </button>
               <?php else: ?>
-                <button class="btn-outline">
-                  <a href="login.php">Iniciar Sesion</a>
+                <button class="btn-login">
+                  <a href="./login.php">Iniciar Sesion</a>
                 </button>
-                <button class="btn-filled">
-                  <a href="register.php">Registrarse</a>
+                <button class="btn-register">
+                  <a href="./register.php">Registrarse</a>
                 </button>
               <?php endif; ?>
             </div>
@@ -166,6 +159,7 @@ $paquetes = obtenerPaquetes();
 
       <!-- SECTION: PAQUETES TURÍSTICOS DESDE BASE DE DATOS -->
       <section class="packages" id="packages-container">
+        
         <?php if($paquetes && mysqli_num_rows($paquetes) > 0): ?>
           <?php while($paquete = mysqli_fetch_assoc($paquetes)): ?>
             <div
@@ -197,6 +191,7 @@ $paquetes = obtenerPaquetes();
                 <h3 class="ellipsis"><?php echo htmlspecialchars($paquete['titulo']); ?></h3>
                 <p class="ellipsis"><?php echo htmlspecialchars($paquete['descripcion']); ?></p>
                 <div class="price-duration">
+                  <div class="duration"><?php echo $paquete['dias']; ?> días</div>
                   <div class="price-row">
                     <span class="new-price">$<?php echo number_format($paquete['precio']); ?></span>
                     <?php if($paquete['descuento'] > 0): ?>
@@ -204,7 +199,6 @@ $paquetes = obtenerPaquetes();
                       <span class="old-price">$<?php echo number_format($precio_original); ?></span>
                     <?php endif; ?>
                   </div>
-                  <div class="duration"><?php echo $paquete['dias']; ?> días</div>
                 </div>
                 <div class="btn-row">
                   <button class="btn btn-secondary">

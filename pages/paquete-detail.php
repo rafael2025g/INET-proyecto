@@ -25,62 +25,81 @@ if (!$paquete) {
       </div>
     </div>
 
-    <!-- SECCIÓN 1: NAVEGACIÓN PRINCIPAL-->
+  <!-- SECCIÓN 1: NAVEGACIÓN PRINCIPAL-->
     <header>
       <nav class="navbar">
+        <!-- LOGO DE LA EMPRESA -->
         <div class="logo">TravelWorld</div>
-        
-        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menú">
+
+        <!-- BOTÓN HAMBURGUESA PARA MÓVIL -->
+        <button
+          class="mobile-menu-toggle"
+          id="mobileMenuToggle"
+          aria-label="Abrir menú"
+        >
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
         </button>
-        
+
+        <!-- MENÚ DE NAVEGACIÓN CON OVERLAY MÓVIL -->
         <div class="nav-menu" id="navMenu">
           <div class="nav-overlay" id="navOverlay"></div>
           
           <div class="nav-content">
             <div class="mobile-menu-header">
               <div class="logo">TravelWorld</div>
-              <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <button
+                class="mobile-menu-close"
+                id="mobileMenuClose"
+                aria-label="Cerrar menú"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
                   <line x1="18" y1="6" x2="6" y2="18"></line>
                   <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
               </button>
             </div>
-            
+
             <ul class="nav-links">
               <li><a href="../index.php" class="nav-link">inicio</a></li>
               <li><a href="../index.php#promoSection" class="nav-link">ofertas</a></li>
-              <li><a href="paquetes.php" class="nav-link active">paquetes</a></li>
+              <li><a href="./paquetes.php" class="nav-link active">paquetes</a></li>
               <li><a href="../index.php#servicios" class="nav-link">servicios</a></li>
               <li><a href="../index.php#contacto" class="nav-link">contacto</a></li>
             </ul>
-            
+
             <div class="nav-buttons">
               <?php if(isset($_SESSION['usuario'])): ?>
-                <span>Hola, <?php echo $_SESSION['usuario']; ?></span>
+                
+                <span class='nav-user'><img src="../assets/images/user.png" alt=""></span>
                 
                 <?php if($_SESSION['rol'] === 'cliente'): ?>
-                  <button class="btn-filled">
-                    <a href="cart.php">Carrito</a>
+                  <!-- Opciones para clientes -->
+                  <button class="btn-cart">
+                    <a href="cart.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg><?php echo isset($_SESSION['carrito']) ? count($_SESSION['carrito']) : 0; ?>+</a>
                   </button>
                 <?php elseif($_SESSION['rol'] === 'admin'): ?>
-                  <button class="btn-filled">
-                    <a href="admin-panel.php">Agregar Producto</a>
-                  </button>
+                  <!-- Opciones para administradores -->
+                   
                 <?php endif; ?>
                 
-                <button class="btn-outline">
-                  <a href="logout.php">Cerrar Sesión</a>
+                <button class="btn-login">
+                  <a href="./pages/logout.php">Cerrar Sesión</a>
                 </button>
               <?php else: ?>
-                <button class="btn-outline">
-                  <a href="login.php">Iniciar sesión</a>
+                <button class="btn-login">
+                  <a href="./pages/login.php">Iniciar Sesion</a>
                 </button>
-                <button class="btn-filled">
-                  <a href="register.php">Registrarse</a>
+                <button class="btn-register">
+                  <a href="./pages/register.php">Registrarse</a>
                 </button>
               <?php endif; ?>
             </div>
@@ -88,7 +107,6 @@ if (!$paquete) {
         </div>
       </nav>
     </header>
-
     <section class="package-detail" id="packageDetail">
       <div class="package-header">
         <?php if($paquete['descuento'] > 0): ?>
@@ -121,18 +139,66 @@ if (!$paquete) {
               <?php endif; ?>
               
               <!-- Imágenes adicionales de ejemplo -->
+              <?php if($paquete['img2']): ?>
+                <img
+                  src="data:image/jpeg;base64,<?php echo base64_encode($paquete['img2']); ?>"
+                  alt="<?php echo htmlspecialchars($paquete['titulo']); ?>"
+                  class="slider-image"
+                  data-index="1"
+                />
+              <?php else: ?>
               <img
                 src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=400&fit=crop"
                 alt="Vista 2"
                 class="slider-image"
                 data-index="1"
               />
+              <?php endif; ?>
+              <?php if($paquete['img3']): ?>
+                <img
+                  src="data:image/jpeg;base64,<?php echo base64_encode($paquete['img3']); ?>"
+                  alt="<?php echo htmlspecialchars($paquete['titulo']); ?>"
+                  class="slider-image"
+                  data-index="2"
+                />
+              <?php else: ?>
               <img
                 src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=400&fit=crop"
                 alt="Vista 3"
                 class="slider-image"
                 data-index="2"
               />
+              <?php endif; ?>
+              <?php if($paquete['img4']): ?>
+                <img
+                  src="data:image/jpeg;base64,<?php echo base64_encode($paquete['img4']); ?>"
+                  alt="<?php echo htmlspecialchars($paquete['titulo']); ?>"
+                  class="slider-image"
+                  data-index="3"
+                />
+              <?php else: ?>
+              <img
+                src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=400&fit=crop"
+                alt="Vista 3"
+                class="slider-image"
+                data-index="3"
+              />
+              <?php endif; ?>
+              <?php if($paquete['img5']): ?>
+                <img
+                  src="data:image/jpeg;base64,<?php echo base64_encode($paquete['img5']); ?>"
+                  alt="<?php echo htmlspecialchars($paquete['titulo']); ?>"
+                  class="slider-image"
+                  data-index="4"
+                />
+              <?php else: ?>
+              <img
+                src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&h=400&fit=crop"
+                alt="Vista 4"
+                class="slider-image"
+                data-index="4"
+              />
+              <?php endif; ?>
             </div>
 
             <button class="slider-arrow next-arrow" id="nextBtn">
@@ -142,7 +208,7 @@ if (!$paquete) {
             </button>
 
             <div class="slider-indicator" id="sliderIndicator">
-              <span id="currentSlide">1</span>/<span id="totalSlides">3</span>
+              <span id="currentSlide">1</span>/<span id="totalSlides">5</span>
             </div>
           </div>
 
@@ -155,10 +221,32 @@ if (!$paquete) {
               <?php endif; ?>
             </div>
             <div class="thumb" data-index="1">
-              <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=100&h=60&fit=crop" alt="Thumbnail 2" />
+              <?php if($paquete['img2']): ?>
+                <img src="data:image/jpeg;base64,<?php echo base64_encode($paquete['img2']); ?>" alt="Thumbnail 2" />
+              <?php else: ?>
+                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=100&h=60&fit=crop" alt="Thumbnail 2" />
+              <?php endif; ?>
             </div>
             <div class="thumb" data-index="2">
-              <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=100&h=60&fit=crop" alt="Thumbnail 3" />
+              <?php if($paquete['img3']): ?>
+                <img src="data:image/jpeg;base64,<?php echo base64_encode($paquete['img3']); ?>" alt="Thumbnail 3" />
+              <?php else: ?>
+                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=100&h=60&fit=crop" alt="Thumbnail 3" />
+              <?php endif; ?>
+            </div>
+            <div class="thumb" data-index="3">
+              <?php if($paquete['img4']): ?>
+                <img src="data:image/jpeg;base64,<?php echo base64_encode($paquete['img4']); ?>" alt="Thumbnail 4" />
+              <?php else: ?>
+                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=100&h=60&fit=crop" alt="Thumbnail 4" />
+              <?php endif; ?>
+            </div>
+            <div class="thumb" data-index="4">
+              <?php if($paquete['img5']): ?>
+                <img src="data:image/jpeg;base64,<?php echo base64_encode($paquete['img5']); ?>" alt="Thumbnail 5" />
+              <?php else: ?>
+                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=100&h=60&fit=crop" alt="Thumbnail 5" />
+              <?php endif; ?>
             </div>
           </div>
         </div>
@@ -182,7 +270,7 @@ if (!$paquete) {
               <form method="POST" style="display: inline;" onsubmit="return confirm('¿Estás seguro de eliminar este paquete?')">
                 <input type="hidden" name="id" value="<?php echo $paquete['ID_Producto']; ?>">
                 <input type="hidden" name="eliminar" value="1">
-                <button type="submit" class="btn-agregar" style="background: #dc3545;">
+                <button type="submit" class="btn-eliminar">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polyline points="3,6 5,6 21,6"/>
                     <path d="m19,6v14a2,2 0 0,1 -2,2H7a2,2 0 0,1 -2,-2V6m3,0V4a2,2 0 0,1 2,-2h4a2,2 0 0,1 2,2v2"/>
@@ -223,17 +311,17 @@ if (!$paquete) {
         
         <div class="package-top">
           <div class="description-section">
-            <div class="description-title">
+            <div class="description-content">
               <h3>Descripción del Viaje</h3>
-              <div class="price-box">
-                <strong>$<?php echo number_format($paquete['precio']); ?></strong>
-                <?php if($paquete['descuento'] > 0): ?>
-                  <?php $precio_original = $paquete['precio'] / (1 - $paquete['descuento']/100); ?>
-                  <span class="original-price">$<?php echo number_format($precio_original); ?></span>
-                <?php endif; ?>
-              </div>
+              <p><?php echo htmlspecialchars($paquete['descripcion']); ?></p>
             </div>
-            <p><?php echo htmlspecialchars($paquete['descripcion']); ?></p>
+            <div class="price-box">
+              <strong>$<?php echo number_format($paquete['precio']); ?></strong>
+              <?php if($paquete['descuento'] > 0): ?>
+                <?php $precio_original = $paquete['precio'] / (1 - $paquete['descuento']/100); ?>
+                <span class="original-price">$<?php echo number_format($precio_original); ?></span>
+              <?php endif; ?>
+            </div>
           </div>
         </div>
 

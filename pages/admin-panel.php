@@ -10,108 +10,125 @@ if(!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administración - TravelWorld</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-        input, textarea, select {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        button {
-            background: #007bff;
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        button:hover {
-            background: #0056b3;
-        }
-        .nav-link {
-            display: inline-block;
-            margin-bottom: 1rem;
-            color: #007bff;
-            text-decoration: none;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="../assets/css/admin/paquetes-add.css" />
+  <title>Agregar Paquete Turístico - Admin</title>
 </head>
 <body>
-    <div class="container">
+<main class="panel-container">
+    <div class="panel-header">
         <a href="../index.php" class="nav-link">← Volver al inicio</a>
-        <h1>Panel de Administración</h1>
-        <h2>Agregar Nuevo Paquete Turístico</h2>
-        
-        <form method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="titulo">Título del Paquete:</label>
-                <input type="text" id="titulo" name="titulo" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
-            </div>
-            
-            <div class="form-group">
-                <label for="lugar">Lugar/Destino:</label>
-                <input type="text" id="lugar" name="lugar" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="precio">Precio:</label>
-                <input type="number" id="precio" name="precio" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="dias">Duración (días):</label>
-                <input type="number" id="dias" name="dias" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="cantidad">Stock disponible:</label>
-                <input type="number" id="cantidad" name="cantidad" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="descuento">Descuento (%):</label>
-                <input type="number" id="descuento" name="descuento" min="0" max="100" value="0">
-            </div>
-            
-            <div class="form-group">
-                <label for="img">Imagen del paquete:</label>
-                <input type="file" id="img" name="img" accept="image/*" required>
-            </div>
-            
-            <button type="submit" name="ingresar">Agregar Paquete</button>
-        </form>
     </div>
+    
+    <section class="panel-grid">
+        <div class="images-card">
+            <label class="upload-label">Imágenes del paquete:</label>
+            <div class="image-upload-wrapper">
+                <!-- Slots para 5 imágenes -->
+                <div class="image-slot-soft">
+                    <input type="file" name="img" accept="image/*" required onchange="previewImageSoft(this, 0)">
+                    <div class="preview-soft" id="previewSoft0">+</div>
+                </div>
+                <div class="image-slot-soft">
+                    <input type="file" name="img2" accept="image/*" onchange="previewImageSoft(this, 1)">
+                    <div class="preview-soft" id="previewSoft1">+</div>
+                </div>
+                <div class="image-slot-soft">
+                    <input type="file" name="img3" accept="image/*" onchange="previewImageSoft(this, 2)">
+                    <div class="preview-soft" id="previewSoft2">+</div>
+                </div>
+                <div class="image-slot-soft">
+                <input type="file" name="img4" accept="image/*" onchange="previewImageSoft(this, 3)">
+                <div class="preview-soft" id="previewSoft3">+</div>
+            </div>
+                <div class="image-slot-soft">
+                <input type="file" name="img5" accept="image/*" onchange="previewImageSoft(this, 4)">
+                <div class="preview-soft" id="previewSoft4">+</div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <form method="POST" enctype="multipart/form-data" class="form-card">
+            <h2>Agregar Paquete Turístico</h2>
+            <div class="input-container">
+                <label for="titulo">Título:</label>
+                <div class="input-group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-captions-icon lucide-captions"><rect width="18" height="14" x="3" y="5" rx="2" ry="2"/><path d="M7 15h4M15 15h2M7 11h2M13 11h4"/></svg>
+                    <input type="text" id="titulo" placeholder="Titulo" name="titulo" required>
+                </div>
+            </div>
+
+            <div class="input-container">
+                <label for="descripcion">Descripción:</label>
+                <div class="input-group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-square-text-icon lucide-message-square-text"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M13 8H7"/><path d="M17 12H7"/></svg>
+                    <textarea id="descripcion" placeholder="Descripcion" name="descripcion" rows="4" required></textarea>
+                </div>
+            </div>
+
+            <div class="input-container">
+                <label for="lugar">Destino:</label>
+                <div class="input-group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+                    <input type="text" id="lugar" placeholder="Destino" name="lugar" required>
+                </div>
+            </div>
+            <div class="input-merge">
+                <div class="input-container">
+                    <label for="precio">Precio:</label>
+                    <div class="input-group">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-dollar-sign-icon lucide-circle-dollar-sign"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+                        <input type="number" id="precio" placeholder="Precio" name="precio" required>
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="dias">Duración (días):</label>
+                    <div class="input-group">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-fold-icon lucide-calendar-fold"><path d="M8 2v4"/><path d="M16 2v4"/><path d="M21 17V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11Z"/><path d="M3 10h18"/><path d="M15 22v-4a2 2 0 0 1 2-2h4"/></svg>
+                        <input type="number" id="dias" placeholder="Dias" name="dias" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-merge">
+                <div class="input-container">
+                    <label for="cantidad">Stock disponible:</label>
+                    <div class="input-group">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-box-icon lucide-file-box"><path d="M14.5 22H18a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M3 13.1a2 2 0 0 0-1 1.76v3.24a2 2 0 0 0 .97 1.78L6 21.7a2 2 0 0 0 2.03.01L11 19.9a2 2 0 0 0 1-1.76V14.9a2 2 0 0 0-.97-1.78L8 11.3a2 2 0 0 0-2.03-.01Z"/><path d="M7 17v5"/><path d="M11.7 14.2 7 17l-4.7-2.8"/></svg>
+                        <input type="number" id="cantidad" placeholder="Stock" name="cantidad"  required>
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="descuento">Descuento (%):</label>
+                    <div class="input-group">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-badge-percent-icon lucide-badge-percent"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m15 9-6 6"/><path d="M9 9h.01"/><path d="M15 15h.01"/></svg>
+                        <input type="number" id="descuento" placeholder="Descuento" name="descuento" value="0" min="0" max="100">
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-btn">
+                <button type="submit" name="ingresar" class="submit-btn">Agregar Paquete</button>
+            </div>
+        </form>
+    </section>
+  </main>
+<script>
+    function previewImageSoft(input, index) {
+    const preview = document.getElementById(`previewSoft${index}`);
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = e => {
+        preview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+    }
+</script>
+
 </body>
 </html>
+

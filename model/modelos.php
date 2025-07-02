@@ -8,56 +8,79 @@ define("COD", "AES-128-ECB");
 define("KEY_TOKEN", "APR.wqc-354*");
 
 // --- Función para guardar paquete turístico ---
-if(isset($_POST["ingresar"])){
-    
-    $dias=$_POST["dias"];
-    $stock=$_POST["cantidad"];
-    $precio=$_POST["precio"];
-    $descripcion=$_POST["descripcion"];
-    $lugar=$_POST["lugar"];
-    $titulo=$_POST["titulo"];
-    $descuento=$_POST["descuento"];
-    $imagen=addslashes(file_get_contents($_FILES['img']['tmp_name']));
-    
-    //consulta
-    $consulta_Sql="INSERT INTO ventas(imagen, titulo, descripcion, precio, stock, lugar, dias, descuento) VALUES('$imagen', '$titulo', '$descripcion', '$precio', '$stock', '$lugar', '$dias', '$descuento')";
-    $validacion=mysqli_query($Ruta, $consulta_Sql);
-    if($validacion){
+if (isset($_POST["ingresar"])) {
+    $dias = $_POST["dias"];
+    $stock = $_POST["cantidad"];
+    $precio = $_POST["precio"];
+    $descripcion = $_POST["descripcion"];
+    $lugar = $_POST["lugar"];
+    $titulo = $_POST["titulo"];
+    $descuento = $_POST["descuento"];
+
+    // Imágenes (pueden estar vacías)
+    $imagen = isset($_FILES['img']['tmp_name']) && $_FILES['img']['size'] > 0 ? addslashes(file_get_contents($_FILES['img']['tmp_name'])) : null;
+    $img2 = isset($_FILES['img2']['tmp_name']) && $_FILES['img2']['size'] > 0 ? addslashes(file_get_contents($_FILES['img2']['tmp_name'])) : null;
+    $img3 = isset($_FILES['img3']['tmp_name']) && $_FILES['img3']['size'] > 0 ? addslashes(file_get_contents($_FILES['img3']['tmp_name'])) : null;
+    $img4 = isset($_FILES['img4']['tmp_name']) && $_FILES['img4']['size'] > 0 ? addslashes(file_get_contents($_FILES['img4']['tmp_name'])) : null;
+    $img5 = isset($_FILES['img5']['tmp_name']) && $_FILES['img5']['size'] > 0 ? addslashes(file_get_contents($_FILES['img5']['tmp_name'])) : null;
+
+    $consulta_Sql = "INSERT INTO ventas(imagen, img2, img3, img4, img5, titulo, descripcion, precio, stock, lugar, dias, descuento)
+                     VALUES('$imagen', '$img2', '$img3', '$img4', '$img5', '$titulo', '$descripcion', '$precio', '$stock', '$lugar', '$dias', '$descuento')";
+
+    $validacion = mysqli_query($Ruta, $consulta_Sql);
+
+    if ($validacion) {
         echo '<script>alert("Paquete registrado exitosamente"); window.location.href="../pages/paquetes.php";</script>';
-        
-    }
-    else{
+    } else {
         echo '<script>alert("Error al registrar paquete");</script>';
     }
 }
 
-// --- Función para actualizar paquete ---
-if(isset($_POST["actualizar"])){
-    
+if (isset($_POST["actualizar"])) {
     $id = $_POST["id"];
-    $dias=$_POST["dias"];
-    $stock=$_POST["cantidad"];
-    $precio=$_POST["precio"];
-    $descripcion=$_POST["descripcion"];
-    $lugar=$_POST["lugar"];
-    $titulo=$_POST["titulo"];
-    $descuento=$_POST["descuento"];
-    
-    if($_FILES['img']['size'] > 0) {
-        $imagen=addslashes(file_get_contents($_FILES['img']['tmp_name']));
-        $consulta_Sql="UPDATE ventas SET imagen='$imagen', titulo='$titulo', descripcion='$descripcion', precio='$precio', stock='$stock', lugar='$lugar', dias='$dias', descuento='$descuento' WHERE ID_Producto='$id'";
-    } else {
-        $consulta_Sql="UPDATE ventas SET titulo='$titulo', descripcion='$descripcion', precio='$precio', stock='$stock', lugar='$lugar', dias='$dias', descuento='$descuento' WHERE ID_Producto='$id'";
+    $dias = $_POST["dias"];
+    $stock = $_POST["cantidad"];
+    $precio = $_POST["precio"];
+    $descripcion = $_POST["descripcion"];
+    $lugar = $_POST["lugar"];
+    $titulo = $_POST["titulo"];
+    $descuento = $_POST["descuento"];
+
+    // Armar SET dinámico según qué imagenes fueron actualizadas
+    $set_sql = "titulo='$titulo', descripcion='$descripcion', precio='$precio', stock='$stock', lugar='$lugar', dias='$dias', descuento='$descuento'";
+
+    if ($_FILES['img']['size'] > 0) {
+        $imagen = addslashes(file_get_contents($_FILES['img']['tmp_name']));
+        $set_sql .= ", imagen='$imagen'";
     }
-    
-    $validacion=mysqli_query($Ruta, $consulta_Sql);
-    if($validacion){
+    if ($_FILES['img2']['size'] > 0) {
+        $img2 = addslashes(file_get_contents($_FILES['img2']['tmp_name']));
+        $set_sql .= ", img2='$img2'";
+    }
+    if ($_FILES['img3']['size'] > 0) {
+        $img3 = addslashes(file_get_contents($_FILES['img3']['tmp_name']));
+        $set_sql .= ", img3='$img3'";
+    }
+    if ($_FILES['img4']['size'] > 0) {
+        $img4 = addslashes(file_get_contents($_FILES['img4']['tmp_name']));
+        $set_sql .= ", img4='$img4'";
+    }
+    if ($_FILES['img5']['size'] > 0) {
+        $img5 = addslashes(file_get_contents($_FILES['img5']['tmp_name']));
+        $set_sql .= ", img5='$img5'";
+    }
+
+    $consulta_Sql = "UPDATE ventas SET $set_sql WHERE ID_Producto='$id'";
+
+    $validacion = mysqli_query($Ruta, $consulta_Sql);
+
+    if ($validacion) {
         echo '<script>alert("Paquete actualizado exitosamente"); window.location.href="../pages/paquetes.php";</script>';
-    }
-    else{
+    } else {
         echo '<script>alert("Error al actualizar paquete");</script>';
     }
 }
+
 
 // --- Función para eliminar paquete ---
 if(isset($_POST["eliminar"])){
@@ -83,45 +106,60 @@ if (isset($_POST['btnAccion'])) {
     
     switch ($_POST['btnAccion']) {
         case 'agregar':
-            $id = openssl_decrypt($_POST['id'], COD, KEY);
-            $titulo = openssl_decrypt($_POST['titulo'], COD, KEY);
-            $precio = openssl_decrypt($_POST['precio'], COD, KEY);
-            $cantidad = openssl_decrypt($_POST['cantidad'], COD, KEY);
+    $id = openssl_decrypt($_POST['id'], COD, KEY);
+    $titulo = openssl_decrypt($_POST['titulo'], COD, KEY);
+    $precio = openssl_decrypt($_POST['precio'], COD, KEY);
+    $cantidad = openssl_decrypt($_POST['cantidad'], COD, KEY);
 
-            if (is_numeric($id) && is_string($titulo) && is_numeric($precio) && is_numeric($cantidad)) {
-                $producto = [
-                    'id' => $id,
-                    'titulo' => $titulo,
-                    'precio' => $precio,
-                    'cantidad' => $cantidad
-                ];
+    if (is_numeric($id) && is_string($titulo) && is_numeric($precio) && is_numeric($cantidad)) {
+        // Calcular total por producto
+        $totalProducto = $precio * $cantidad;
 
-                if (!isset($_SESSION['carrito'])) {
-                    $_SESSION['carrito'] = [];
-                }
-                $_SESSION['carrito'][] = $producto;
-                $mensaje = "Producto agregado al carrito";
-            } else {
-                $mensaje = "Datos del producto no válidos.";
-            }
-            break;
+        // Insertar o actualizar en la tabla carrito
+        $ID_usuario = $_SESSION['ID_usuario'];
 
-        case 'eliminar':
-            $id = openssl_decrypt($_POST['id'], COD, KEY);
-            if (is_numeric($id)) {
-                foreach ($_SESSION['carrito'] as $index => $producto) {
-                    if ($producto['id'] == $id) {
-                        unset($_SESSION['carrito'][$index]);
-                        $_SESSION['carrito'] = array_values($_SESSION['carrito']);
-                        break;
-                    }
-                }
-            }
-            break;
+        // Primero revisamos si el producto ya está en el carrito del usuario para evitar duplicados
+        $consultaCheck = $Ruta->prepare("SELECT ID_carrito, cantidad FROM carrito WHERE ID_producto = ? AND ID_usuario = ?");
+        $consultaCheck->bind_param("ii", $id, $ID_usuario);
+        $consultaCheck->execute();
+        $resultadoCheck = $consultaCheck->get_result();
 
-        case 'vaciar':
+        if ($resultadoCheck->num_rows > 0) {
+            // Ya existe, actualizar cantidad y total
+            $fila = $resultadoCheck->fetch_assoc();
+            $nuevaCantidad = $fila['cantidad'] + $cantidad;
+            $nuevoTotal = $precio * $nuevaCantidad;
+
+            $update = $Ruta->prepare("UPDATE carrito SET cantidad = ?, total = ? WHERE ID_carrito = ?");
+            $update->bind_param("idi", $nuevaCantidad, $nuevoTotal, $fila['ID_carrito']);
+            $update->execute();
+            $update->close();
+        } else {
+            // Insertar nuevo registro
+            $insert = $Ruta->prepare("INSERT INTO carrito (ID_producto, cantidad, total, ID_usuario) VALUES (?, ?, ?, ?)");
+            $insert->bind_param("iidi", $id, $cantidad, $totalProducto, $ID_usuario);
+            $insert->execute();
+            $insert->close();
+        }
+        $consultaCheck->close();
+
+        // También puedes seguir guardando en la sesión si quieres
+        if (!isset($_SESSION['carrito'])) {
             $_SESSION['carrito'] = [];
-            break;
+        }
+        $_SESSION['carrito'][] = [
+            'id' => $id,
+            'titulo' => $titulo,
+            'precio' => $precio,
+            'cantidad' => $cantidad
+        ];
+
+        $mensaje = "Producto agregado al carrito y guardado en base de datos.";
+    } else {
+        $mensaje = "Datos del producto no válidos.";
+    }
+    break;
+
     }
 }
 

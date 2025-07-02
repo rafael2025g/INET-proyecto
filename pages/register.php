@@ -1,4 +1,3 @@
-<?php include('../model/r.php');?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -6,14 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Crear Cuenta</title>
     <link rel="stylesheet" href="../assets/css/register/register.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
   </head>
   <body>
     <div class="register-container">
-      <form class="register-form" method="POST" >
+      <form class="register-form" method="POST" action='../model/r.php'>
         <h2>Crear Cuenta</h2>
 
         <div class="input-field">

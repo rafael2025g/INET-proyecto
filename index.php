@@ -11,86 +11,87 @@ include('model/modelos.php');
   <link rel="stylesheet" href="assets/css/index-css/index.css" />
   <link rel="stylesheet" href="assets/css/index-css/promo.css">
   <link rel="stylesheet" href="assets/css/index-css/contact.css">
-  <link rel="stylesheet" href="assets/css/historial-button.css">
+  <link rel="stylesheet" href="assets/css/historial/historial-button.css">
 </head>
 <body>
     <!-- SECCIÓN 1: NAVEGACIÓN PRINCIPAL-->
     <header>
       <nav class="navbar">
         <!-- LOGO DE LA EMPRESA -->
-        <div class="logo">TravelWorld</div>
-        
-        <!-- BOTÓN HAMBURGUESA PARA MÓVIL (NUEVO) -->
-        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menú">
+        <div class="logo none">TravelWorld</div>
+
+        <!-- BOTÓN HAMBURGUESA PARA MÓVIL -->
+        <button
+          class="mobile-menu-toggle"
+          id="mobileMenuToggle"
+          aria-label="Abrir menú"
+        >
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
         </button>
-        
+
         <!-- MENÚ DE NAVEGACIÓN CON OVERLAY MÓVIL -->
         <div class="nav-menu" id="navMenu">
-          <!--  OVERLAY PARA MÓVIL (NUEVO) -->
           <div class="nav-overlay" id="navOverlay"></div>
           
-          <!-- CONTENEDOR DEL MENÚ -->
           <div class="nav-content">
-            <!-- HEADER DEL MENÚ MÓVIL (NUEVO) -->
             <div class="mobile-menu-header">
-              <div class="logo">TravelWorld</div>
-              <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <div class="logo ">TravelWorld</div>
+              <button
+                class="mobile-menu-close"
+                id="mobileMenuClose"
+                aria-label="Cerrar menú"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
                   <line x1="18" y1="6" x2="6" y2="18"></line>
                   <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
               </button>
             </div>
-            
-            <!-- ENLACES DE NAVEGACIÓN -->
-            <ul class="nav-links">
-              <li><a href="index.php" class="nav-link active">inicio</a></li>
-              <li><a href="index.php#promoSection" class="nav-link">ofertas</a></li>
-              <li><a href="pages/paquetes.php" class="nav-link">paquetes</a></li>
-              <li><a href="index.php#servicios" class="nav-link">servicios</a></li>
-              <li><a href="index.php#contacto" class="nav-link">contacto</a></li>
-            </ul>
-            
-            <!-- BOTONES DE ACCIÓN -->
-            <div class="nav-buttons">
-  <?php if(isset($_SESSION['usuario'])): ?>
-    <span>Hola, <?php echo htmlspecialchars($_SESSION['usuario']); ?></span>
-    
-    <?php if($_SESSION['rol'] === 'cliente'): ?>
-      <!-- Opciones para clientes -->
-      <button class="btn-filled">
-        <a href="pages/cart.php">Carrito (<?php echo isset($_SESSION['carrito']) ? count($_SESSION['carrito']) : 0; ?>)</a>
-      </button>
-      <button class="btn-outline">
-        <a href="pages/historial.php">Mi Historial</a>
-      </button>
-    <?php elseif($_SESSION['rol'] === 'admin'): ?>
-      <!-- Opciones para administradores -->
-      <button class="btn-filled">
-        <a href="pages/admin-panel.php">Agregar Producto</a>
-      </button>
-      <button class="btn-outline">
-        <a href="pages/historial.php">Ver Historial</a>
-      </button>
-    <?php endif; ?>
-    
-    <button class="btn-outline">
-      <a href="pages/logout.php">Cerrar Sesión</a>
-    </button>
-  
-  <?php else: ?>
-    <button class="btn-outline">
-      <a href="pages/login.php">Iniciar sesión</a>
-    </button>
-    <button class="btn-filled">
-      <a href="pages/register.php">Registrarse</a>
-    </button>
-  <?php endif; ?>
-</div>
 
+            <ul class="nav-links">
+              <li><a href="./index.php" class="nav-link">inicio</a></li>
+              <li><a href="./index.php#promoSection" class="nav-link">ofertas</a></li>
+              <li><a href="./pages/paquetes.php" class="nav-link active">paquetes</a></li>
+              <li><a href="./index.php#servicios" class="nav-link">servicios</a></li>
+              <li><a href="./index.php#contacto" class="nav-link">contacto</a></li>
+            </ul>
+
+            <div class="nav-buttons">
+              <?php if(isset($_SESSION['usuario'])): ?>
+                
+                <span class='nav-user'><img src="./assets/images/user.png" alt=""></span>
+                
+                <?php if($_SESSION['rol'] === 'cliente'): ?>
+                  <!-- Opciones para clientes -->
+                  <button class="btn-cart">
+                    <a href="cart.php"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg><?php echo isset($_SESSION['carrito']) ? count($_SESSION['carrito']) : 0; ?>+</a>
+                  </button>
+                <?php elseif($_SESSION['rol'] === 'admin'): ?>
+                  <!-- Opciones para administradores -->
+                   
+                <?php endif; ?>
+                
+                <button class="btn-login">
+                  <a href="./pages/logout.php">Cerrar Sesión</a>
+                </button>
+              <?php else: ?>
+                <button class="btn-login">
+                  <a href="./pages/login.php">Iniciar Sesion</a>
+                </button>
+                <button class="btn-register">
+                  <a href="./pages/register.php">Registrarse</a>
+                </button>
+              <?php endif; ?>
+            </div>
           </div>
         </div>
       </nav>
